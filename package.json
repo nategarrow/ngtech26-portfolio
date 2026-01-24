@@ -1,0 +1,17 @@
+{
+  "name": "ngtech26-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "dev:frontend": "pnpm --filter @ngtech26/frontend dev",
+    "dev:sanity": "pnpm --filter @ngtech26/sanity dev",
+    "build": "pnpm --filter \"./apps/*\" build",
+    "build:frontend": "pnpm --filter @ngtech26/frontend build",
+    "build:sanity": "pnpm --filter @ngtech26/sanity build",
+    "format": "pnpm --filter \"./apps/*\" format",
+    "lint": "pnpm --filter \"./apps/*\" lint",
+    "clean": "pnpm --filter \"./apps/*\" clean"
+  },
+  "packageManager": "pnpm@10.28.1"
+}

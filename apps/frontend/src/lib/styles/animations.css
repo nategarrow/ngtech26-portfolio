@@ -1,0 +1,98 @@
+.autoBlur {
+	@supports (animation-timeline: view()) {
+		animation: autoBlurAnimation both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes autoBlurAnimation {
+	0% {
+		filter: blur(20px);
+	}
+	30%,
+	70% {
+		filter: blur(0px);
+	}
+	100% {
+		filter: blur(10px);
+	}
+}
+
+.autoSlideLeft {
+	@supports (animation-timeline: view()) {
+		animation: autoSlideLeftAnimation both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes autoSlideLeftAnimation {
+	from {
+		transform: translateX(-2%);
+	}
+	60% {
+		transform: translateX(5%);
+	}
+	to {
+		transform: translateX(5%);
+	}
+}
+
+.autoSlideRight {
+	@supports (animation-timeline: view()) {
+		animation: autoSlideRightAnimation both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes autoSlideRightAnimation {
+	from {
+		transform: translateX(2%);
+	}
+	60% {
+		transform: translateX(-5%);
+	}
+	to {
+		transform: translateX(-5%);
+	}
+}
+
+.autoSpreadBlurLetters {
+	@supports (animation-timeline: view()) {
+		animation: autoSpreadBlurLettersAnimation both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes autoSpreadLettersAnimation {
+	0%,
+	70% {
+		letter-spacing: 0em;
+		opacity: 1;
+		filter: blur(0px);
+	}
+
+	to {
+		letter-spacing: 0.35rem;
+		opacity: 0;
+		filter: blur(10px);
+	}
+}
+
+.autoSkillsProgressbar {
+	@supports (animation-timeline: view()) {
+		animation: progressBarAnimation both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes progressBarAnimation {
+	0%,
+	40% {
+		width: 0%;
+	}
+
+	40%,
+	100% {
+		width: var(--skill-progress, 75%);
+	}
+}
