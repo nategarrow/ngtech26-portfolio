@@ -116,9 +116,7 @@
 								<a class:active={activeNavItem === 'about-me'} class="nav-item" href="/#about-me">About Me</a>
 							</li>
 							<li class="flex justify-end lg:justify-center">
-								<a class:active={activeNavItem === 'portfolio'} class="nav-item" href="/#portfolio"
-									>Portfolio</a
-								>
+								<a class:active={activeNavItem === 'portfolio'} class="nav-item" href="/#portfolio">Portfolio</a>
 							</li>
 							<li class="flex justify-end lg:justify-center">
 								<a class:active={activeNavItem === 'success-stories'} class="nav-item" href="/#success-stories"
