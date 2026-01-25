@@ -14,402 +14,448 @@
 
 // Source: schema.json
 export type SkillsList = {
-  _type: "skillsList";
-  skills?: Array<string>;
+	_type: 'skillsList';
+	skills?: Array<string>;
 };
 
 export type ProjectReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "project";
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'project';
 };
 
 export type ProjectSpotlight = {
-  _type: "projectSpotlight";
-  projectHighlights?: Array<{
-    _key: string;
-  } & ProjectReference>;
+	_type: 'projectSpotlight';
+	projectHighlights?: Array<
+		{
+			_key: string;
+		} & ProjectReference
+	>;
 };
 
 export type TestimonialReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "testimonial";
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'testimonial';
 };
 
 export type TestimonialSlider = {
-  _type: "testimonialSlider";
-  testimonials?: Array<{
-    _key: string;
-  } & TestimonialReference>;
+	_type: 'testimonialSlider';
+	testimonials?: Array<
+		{
+			_key: string;
+		} & TestimonialReference
+	>;
 };
 
 export type JobReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "job";
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'job';
 };
 
 export type Resume = {
-  _type: "resume";
-  experiences?: Array<{
-    _key: string;
-  } & JobReference>;
+	_type: 'resume';
+	experiences?: Array<
+		{
+			_key: string;
+		} & JobReference
+	>;
 };
 
 export type AboutMe = {
-  _type: "aboutMe";
-  sectionTitle?: string;
-  aboutContent?: RichText;
-  aboutStats?: Array<{
-    title?: string;
-    value?: string;
-    valuePrefix?: string;
-    valueSuffix?: string;
-    _key: string;
-  }>;
-  openToWork?: boolean;
+	_type: 'aboutMe';
+	sectionTitle?: string;
+	aboutContent?: RichText;
+	aboutStats?: Array<{
+		title?: string;
+		value?: string;
+		valuePrefix?: string;
+		valueSuffix?: string;
+		_key: string;
+	}>;
+	openToWork?: boolean;
 };
 
 export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
 export type Hero = {
-  _type: "hero";
-  avatar?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  title?: string;
-  subheading?: string;
-  content?: RichText;
+	_type: 'hero';
+	avatar?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
+	title?: string;
+	subheading?: string;
+	content?: RichText;
 };
 
 export type Seo = {
-  _type: "seo";
-  slug?: Slug;
-  metaTitle?: string;
-  metaDescription?: RichText;
-  ogImage?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+	_type: 'seo';
+	slug?: Slug;
+	metaTitle?: string;
+	metaDescription?: RichText;
+	ogImage?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
 };
 
-export type Sections = Array<{
-  _key: string;
-} & Hero | {
-  _key: string;
-} & AboutMe | {
-  _key: string;
-} & Resume | {
-  _key: string;
-} & TestimonialSlider | {
-  _key: string;
-} & ProjectSpotlight | {
-  _key: string;
-} & SkillsList>;
+export type Sections = Array<
+	| ({
+			_key: string;
+	  } & Hero)
+	| ({
+			_key: string;
+	  } & AboutMe)
+	| ({
+			_key: string;
+	  } & Resume)
+	| ({
+			_key: string;
+	  } & TestimonialSlider)
+	| ({
+			_key: string;
+	  } & ProjectSpotlight)
+	| ({
+			_key: string;
+	  } & SkillsList)
+>;
 
 export type RichText = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal";
-  listItem?: "bullet" | "number";
-  markDefs?: Array<{
-    href?: string;
-    blank?: boolean;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
+	children?: Array<{
+		marks?: Array<string>;
+		text?: string;
+		_type: 'span';
+		_key: string;
+	}>;
+	style?: 'normal';
+	listItem?: 'bullet' | 'number';
+	markDefs?: Array<{
+		href?: string;
+		blank?: boolean;
+		_type: 'link';
+		_key: string;
+	}>;
+	level?: number;
+	_type: 'block';
+	_key: string;
 }>;
 
 export type SanityFileAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
 };
 
 export type SiteSettings = {
-  _id: string;
-  _type: "siteSettings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  resumeLink?: {
-    asset?: SanityFileAssetReference;
-    media?: unknown;
-    _type: "file";
-  };
-  github?: string;
-  linkedIn?: string;
+	_id: string;
+	_type: 'siteSettings';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	resumeLink?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
+	github?: string;
+	linkedIn?: string;
 };
 
 export type Skills = {
-  _id: string;
-  _type: "skills";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  skill?: string;
-  name?: string;
-  skills?: Array<string>;
+	_id: string;
+	_type: 'skills';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	skill?: string;
+	name?: string;
+	skills?: Array<string>;
 };
 
 export type Project = {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  seo?: Seo;
-  title?: string;
-  client?: string;
-  description?: string;
-  stats?: Array<{
-    label?: string;
-    value?: string;
-    _type: "projectStat";
-    _key: string;
-  }>;
-  techStack?: string;
-  featuredImage?: {
-    asset?: SanityFileAssetReference;
-    media?: unknown;
-    _type: "file";
-  };
-  projectLink?: string;
-  agencyLink?: string;
-  customColor?: "default" | "red" | "blue" | "green" | "purple";
+	_id: string;
+	_type: 'project';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	seo?: Seo;
+	title?: string;
+	client?: string;
+	description?: string;
+	stats?: Array<{
+		label?: string;
+		value?: string;
+		_type: 'projectStat';
+		_key: string;
+	}>;
+	techStack?: string;
+	featuredImage?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
+	projectLink?: string;
+	agencyLink?: string;
+	customColor?: 'default' | 'red' | 'blue' | 'green' | 'purple';
 };
 
 export type Testimonial = {
-  _id: string;
-  _type: "testimonial";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  role?: string;
-  company?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  quote?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  publishDate?: string;
+	_id: string;
+	_type: 'testimonial';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	name?: string;
+	role?: string;
+	company?: string;
+	image?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
+	quote?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+		listItem?: 'bullet' | 'number';
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	publishDate?: string;
 };
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+	_type: 'sanity.imageCrop';
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
 };
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+	_type: 'sanity.imageHotspot';
+	x?: number;
+	y?: number;
+	height?: number;
+	width?: number;
 };
 
 export type Job = {
-  _id: string;
-  _type: "job";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  position?: string;
-  company?: string;
-  currentPosition?: boolean;
-  startDate?: string;
-  endDate?: string;
-  note?: string;
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+	_id: string;
+	_type: 'job';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	position?: string;
+	company?: string;
+	currentPosition?: boolean;
+	startDate?: string;
+	endDate?: string;
+	note?: string;
+	description?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+		listItem?: 'bullet' | 'number';
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
 };
 
 export type HomePage = {
-  _id: string;
-  _type: "homePage";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  seo?: Seo;
-  title?: string;
-  sections?: Sections;
+	_id: string;
+	_type: 'homePage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	seo?: Seo;
+	title?: string;
+	sections?: Sections;
 };
 
 export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
+	_type: 'slug';
+	current?: string;
+	source?: string;
 };
 
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
+	_type: 'sanity.imagePaletteSwatch';
+	background?: string;
+	foreground?: string;
+	population?: number;
+	title?: string;
 };
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
+	_type: 'sanity.imagePalette';
+	darkMuted?: SanityImagePaletteSwatch;
+	lightVibrant?: SanityImagePaletteSwatch;
+	darkVibrant?: SanityImagePaletteSwatch;
+	vibrant?: SanityImagePaletteSwatch;
+	dominant?: SanityImagePaletteSwatch;
+	lightMuted?: SanityImagePaletteSwatch;
+	muted?: SanityImagePaletteSwatch;
 };
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+	_type: 'sanity.imageDimensions';
+	height?: number;
+	width?: number;
+	aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  thumbHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
+	_type: 'sanity.imageMetadata';
+	location?: Geopoint;
+	dimensions?: SanityImageDimensions;
+	palette?: SanityImagePalette;
+	lqip?: string;
+	blurHash?: string;
+	thumbHash?: string;
+	hasAlpha?: boolean;
+	isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
+	_id: string;
+	_type: 'sanity.fileAsset';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	source?: SanityAssetSourceData;
 };
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
+	_type: 'sanity.assetSourceData';
+	name?: string;
+	id?: string;
+	url?: string;
 };
 
 export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
+	_id: string;
+	_type: 'sanity.imageAsset';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	metadata?: SanityImageMetadata;
+	source?: SanityAssetSourceData;
 };
 
 export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
+	_type: 'geopoint';
+	lat?: number;
+	lng?: number;
+	alt?: number;
 };
 
-export type AllSanitySchemaTypes = SkillsList | ProjectReference | ProjectSpotlight | TestimonialReference | TestimonialSlider | JobReference | Resume | AboutMe | SanityImageAssetReference | Hero | Seo | Sections | RichText | SanityFileAssetReference | SiteSettings | Skills | Project | Testimonial | SanityImageCrop | SanityImageHotspot | Job | HomePage | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes =
+	| SkillsList
+	| ProjectReference
+	| ProjectSpotlight
+	| TestimonialReference
+	| TestimonialSlider
+	| JobReference
+	| Resume
+	| AboutMe
+	| SanityImageAssetReference
+	| Hero
+	| Seo
+	| Sections
+	| RichText
+	| SanityFileAssetReference
+	| SiteSettings
+	| Skills
+	| Project
+	| Testimonial
+	| SanityImageCrop
+	| SanityImageHotspot
+	| Job
+	| HomePage
+	| Slug
+	| SanityImagePaletteSwatch
+	| SanityImagePalette
+	| SanityImageDimensions
+	| SanityImageMetadata
+	| SanityFileAsset
+	| SanityAssetSourceData
+	| SanityImageAsset
+	| Geopoint;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
-type ArrayOf<T> = Array<T & {
-  _key: string;
-}>;
+type ArrayOf<T> = Array<
+	T & {
+		_key: string;
+	}
+>;
 
 // Source: ../frontend/src/lib/sanity/queries.js
 // Variable: homeQuery
@@ -432,13 +478,12 @@ export type JobQueryResult = Array<never>;
 export type SkillsQueryResult = Array<never>;
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
-  interface SanityQueries {
-    "*[_type == \"HomePage\"]{\n  heroContent,\n  aboutContent,\n  aboutStats,\n  projectHighlights[]->{\n    id,\n    title,\n    client,\n    description,\n    techStack,\n    stats,\n    \"featuredImageUrl\": featuredImage.asset->url,\n    projectLink,\n    agencyLink,\n    customColor\n  },\n  experiences[]->{\n    position,\n    company,\n    currentPosition,\n    startDate,\n    endDate,\n    note,\n  },\n  skills,\n  testimonials[]->{\n    name,\n    role,\n    company,\n    \"imageUrl\": image.asset->url,\n    quote\n  }\n}": HomeQueryResult;
-    "*[_type == \"Testimonial\"]": TestimonialQueryResult;
-    "*[_type == \"Job\"] | order(startDate desc)": JobQueryResult;
-    "*[_type == \"Skills\"] | order(index asc)": SkillsQueryResult;
-  }
+import '@sanity/client';
+declare module '@sanity/client' {
+	interface SanityQueries {
+		'*[_type == "HomePage"]{\n  heroContent,\n  aboutContent,\n  aboutStats,\n  projectHighlights[]->{\n    id,\n    title,\n    client,\n    description,\n    techStack,\n    stats,\n    "featuredImageUrl": featuredImage.asset->url,\n    projectLink,\n    agencyLink,\n    customColor\n  },\n  experiences[]->{\n    position,\n    company,\n    currentPosition,\n    startDate,\n    endDate,\n    note,\n  },\n  skills,\n  testimonials[]->{\n    name,\n    role,\n    company,\n    "imageUrl": image.asset->url,\n    quote\n  }\n}': HomeQueryResult;
+		'*[_type == "Testimonial"]': TestimonialQueryResult;
+		'*[_type == "Job"] | order(startDate desc)': JobQueryResult;
+		'*[_type == "Skills"] | order(index asc)': SkillsQueryResult;
+	}
 }
-

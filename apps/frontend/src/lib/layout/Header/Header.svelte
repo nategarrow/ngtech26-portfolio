@@ -4,7 +4,7 @@
 
 	let activeNavItem = $state('home');
 	const homePageSections = ['home', 'about-me', 'success-stories'];
-	
+
 	// Handle navigation changes
 	$effect(() => {
 		if ($page.url.pathname !== '/') {
@@ -27,16 +27,16 @@
 
 		// Set up intersection observer
 		const observer = new IntersectionObserver(
-			(entries) => {
+			entries => {
 				if ($page.url.pathname !== '/') return;
-				
+
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
 						const id = entry.target.id;
 						// Only update if the ID is in homePageSections
 						if (homePageSections.includes(id)) {
 							const navLinks = document.querySelectorAll('.nav-wrapper a[href*="#"]');
-							
+
 							navLinks.forEach(link => {
 								if (link.getAttribute('href')?.includes(id)) {
 									activeNavItem = id;
@@ -125,33 +125,33 @@
 					<div class="bg-card-background flex items-center gap-6 rounded-xl p-2">
 						<nav>
 							<ul class="flex w-fit flex-col gap-4 text-right text-sm text-white lg:flex-row lg:gap-2 lg:text-center">
-							<li class="flex justify-end lg:justify-center">
-								<a class:active={activeNavItem === 'home'} class="nav-item" href="/#home">Home</a>
-							</li>
-							<li class="flex justify-end lg:justify-center">
-								<a class:active={activeNavItem === 'about-me'} class="nav-item" href="/#about-me">About Me</a>
-							</li>
-							<li class="flex justify-end lg:justify-center">
-								<a class:active={activeNavItem === 'success-stories'} class="nav-item" href="/#success-stories"
-									>Success Stories</a
-								>
-							</li>
-						</ul>
-					</nav>
+								<li class="flex justify-end lg:justify-center">
+									<a class:active={activeNavItem === 'home'} class="nav-item" href="/#home">Home</a>
+								</li>
+								<li class="flex justify-end lg:justify-center">
+									<a class:active={activeNavItem === 'about-me'} class="nav-item" href="/#about-me">About Me</a>
+								</li>
+								<li class="flex justify-end lg:justify-center">
+									<a class:active={activeNavItem === 'success-stories'} class="nav-item" href="/#success-stories"
+										>Success Stories</a
+									>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
-			</div>
-			<div class="nav-wrapper hidden w-full flex-1 items-center justify-center gap-4 lg:flex">
-				<div class="bg-card-background flex items-center gap-6 rounded-xl p-2">
-					<nav>
-						<ul class="flex w-fit flex-col gap-4 text-right text-sm text-white lg:flex-row lg:gap-2 lg:text-center">
-							<li class="flex justify-end lg:justify-center">
-								<a href="/projects" class="nav-item">Portfolio</a>
-							</li>
-						</ul>
-					</nav>
+				<div class="nav-wrapper hidden w-full flex-1 items-center justify-center gap-4 lg:flex">
+					<div class="bg-card-background flex items-center gap-6 rounded-xl p-2">
+						<nav>
+							<ul class="flex w-fit flex-col gap-4 text-right text-sm text-white lg:flex-row lg:gap-2 lg:text-center">
+								<li class="flex justify-end lg:justify-center">
+									<a href="/projects" class="nav-item">Portfolio</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
-			</div>
-				</nav>
+			</nav>
 			<div class="flex flex-1 justify-end gap-2">
 				<a
 					href="/resume"
@@ -165,7 +165,6 @@
 		</div>
 	</div>
 </header>
-
 
 <style>
 	.nav-wrapper a {
