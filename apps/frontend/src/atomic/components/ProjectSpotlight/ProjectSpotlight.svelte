@@ -1,11 +1,6 @@
 <script lang="ts">
-	import { animate, scroll } from 'motion';
-
-	import HighlightCard from '@components/Portfolio/HighlightCard.svelte';
-	import Trustbar from '@components/Portfolio/Trustbar.svelte';
-	import { onMount } from 'svelte';
+	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
 	import type { ProjectsProps } from '@lib/types/schema';
-	import { cva } from 'cva';
 
 	type Props = {
 		projectHighlights: ProjectsProps[];

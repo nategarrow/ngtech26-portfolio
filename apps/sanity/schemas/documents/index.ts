@@ -4,5 +4,6 @@ import skillsType from './skills'
 import projectType from './project'
 import testimonialType from './testimonial'
 import {siteSettings} from './siteSettings'
+import {richImage} from './image'
 
-export const documents = [homePageType, jobType, testimonialType, projectType, skillsType, siteSettings]
+export const documents = [homePageType, jobType, testimonialType, projectType, skillsType, siteSettings, richImage]

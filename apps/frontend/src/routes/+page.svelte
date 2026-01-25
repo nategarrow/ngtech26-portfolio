@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Footer from '@components/Footer.svelte';
 	import Hero from '@components/Hero.svelte';
-	import Portfolio from '@components/Portfolio/Portfolio.svelte';
+	import Portfolio from '@atomic/components/ProjectSpotlight/ProjectSpotlight.svelte';
 	import AboutMe from '@components/AboutMe/AboutMe.svelte';
 	import Resume from '@components/Resume/Resume.svelte';
 	import TestimonialList from '@components/Testimonials/TestimonialList.svelte';
 
 	export let data;
 	const { homeData } = data;
-	const { heroContent, aboutContent, aboutStats, projectHighlights, experiences, skills, testimonials } = homeData?.[0];
+	const { heroContent, aboutContent, aboutStats, projectHighlights, experiences, testimonials } = homeData?.[0];
 </script>
 
 <Hero {heroContent} />
@@ -17,7 +17,7 @@
 
 <Portfolio {projectHighlights} />
 
-<Resume {experiences} {skills} />
+<Resume {experiences} />
 
 <TestimonialList {testimonials} />
 

@@ -6,12 +6,13 @@ import {
 } from '$env/static/public';
 
 // @ts-ignore
-export function assertEnvVar(value, name) {
+export const assertEnvVar = (value, name) => {
 	if (value === undefined) {
 		throw new Error(`Missing environment variable: ${name}`);
 	}
+
 	return value;
-}
+};
 
 export const dataset = assertEnvVar(PUBLIC_SANITY_DATASET);
 

@@ -32,6 +32,12 @@ const projectType = defineType({
       validation: (rule: StringRule) => rule.required(),
     }),
     defineField({
+      name: 'clientLogo',
+      title: 'Client Logo',
+      type: 'richImage',
+      group: 'content',
+    }),
+    defineField({
       name: 'description',
       type: 'string',
       group: 'content',

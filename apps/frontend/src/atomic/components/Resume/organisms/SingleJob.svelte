@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { JobType } from '@lib/types/schema';
-	import { stringToKebabCase } from '@lib/utils/textFunctions';
+	import { stringToKebabCase } from '../../../../utils/textFunctions';
 	import { animate, inView, stagger } from 'motion';
 	import { onMount } from 'svelte';
 
-	let { id, position, company, startDate, endDate, note }: JobType = $props();
+	let { position, company, startDate, endDate, note }: JobType = $props();
 	const startYear = startDate && new Date(startDate).getFullYear();
 	const endYear = endDate && new Date(endDate).getFullYear();
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ProjectsProps } from '@lib/types/schema.d';
-	import { stringToKebabCase } from '@lib/utils/textFunctions';
+	import { stringToKebabCase } from '../../../utils/textFunctions';
 
 	type Props = ProjectsProps;
 

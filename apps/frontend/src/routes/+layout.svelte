@@ -10,7 +10,7 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights';
 	import { inject } from '@vercel/analytics';
 	import PlanetRings from '@components/PlanetRings.svelte';
-	import Header from '@lib/layout/Header/Header.svelte';
+	import Header from '../atomic/layout/Header/Header.svelte';
 
 	let { children } = $props();
 
