@@ -1,102 +1,105 @@
 import {CodeBlockIcon} from '@sanity/icons'
-import {RuleType} from '../lib/types'
-import {v4 as uuidv4} from 'uuid'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import type {StringRule, UrlRule} from 'sanity'
 
-const projectType = {
-  name: 'Project',
+const projectType = defineType({
+  name: 'project',
   type: 'document',
   icon: CodeBlockIcon,
   title: 'Project',
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
-    {
-      name: 'id',
-      type: 'string',
-      title: '',
-      readOnly: true,
-      hidden: true,
-      initialValue: () => uuidv4(),
-    },
-    {
+    defineField({
+      name: 'seo',
+      type: 'seo',
+      group: 'seo',
+    }),
+    defineField({
       name: 'title',
       type: 'string',
+      group: 'content',
       title: 'Project Title',
-      validation: (rule: RuleType) => rule.required(),
-    },
-    {
+      validation: (rule: StringRule) => rule.required(),
+    }),
+    defineField({
       name: 'client',
       type: 'string',
+      group: 'content',
       title: 'Client',
-      validation: (rule: RuleType) => rule.required(),
-    },
-    {
+      validation: (rule: StringRule) => rule.required(),
+    }),
+    defineField({
       name: 'description',
       type: 'string',
+      group: 'content',
       title: 'Description',
-      validation: (rule: RuleType) => rule.required(),
-    },
-    {
+      validation: (rule: StringRule) => rule.required(),
+    }),
+    defineField({
       name: 'stats',
       type: 'array',
-      validation: (rule) => rule.max(2),
+      group: 'content',
+      validation: (rule) => rule.max(4),
       of: [
-        {
+        defineArrayMember({
           name: 'projectStat',
           type: 'object',
           title: 'Project Stat',
           fields: [
-            {
-              name: 'id',
-              type: 'string',
-              readOnly: true,
-              hidden: true,
-              initialValue: () => uuidv4(),
-            },
-            {
+            defineField({
               name: 'label',
               type: 'string',
               title: 'Label',
-              validation: (rule: RuleType) => rule.required(),
-            },
-            {
+              validation: (rule: StringRule) => rule.required(),
+            }),
+            defineField({
               name: 'value',
               type: 'string',
               title: 'Value',
-              validation: (rule: RuleType) => rule.required(),
-            },
+              validation: (rule: StringRule) => rule.required(),
+            }),
           ],
-        },
+        }),
       ],
-    },
-    {
+    }),
+    defineField({
       name: 'techStack',
       type: 'string',
+      group: 'content',
       title: 'Tech Stack',
-    },
-    {
+    }),
+    defineField({
       name: 'featuredImage',
       type: 'file',
+      group: 'content',
       title: 'Featured Image',
-    },
-    {
+    }),
+    defineField({
       name: 'projectLink',
-      type: 'slug',
+      type: 'url',
+      group: 'content',
       title: 'Project Link',
-      validation: (rule: RuleType) => rule.required(),
-    },
-    {
+      validation: (rule: UrlRule) => rule.required(),
+    }),
+    defineField({
       name: 'agencyLink',
-      type: 'slug',
+      type: 'url',
+      group: 'content',
       title: 'Agency Link',
-    },
-    {
+    }),
+    defineField({
       name: 'customColor',
       type: 'string',
+      group: 'content',
       title: 'Custom Color',
       initialValue: 'default',
       options: {
         list: ['default', 'red', 'blue', 'green', 'purple'],
       },
-    },
+    }),
   ],
   preview: {
     select: {
@@ -110,6 +113,6 @@ const projectType = {
       }
     },
   },
-}
+})
 
 export default projectType

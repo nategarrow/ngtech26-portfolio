@@ -1,7 +1,7 @@
 import {DocumentIcon} from '@sanity/icons'
 
 const skillsType = {
-  name: 'Skills',
+  name: 'skills',
   type: 'document',
   icon: DocumentIcon,
   fields: [

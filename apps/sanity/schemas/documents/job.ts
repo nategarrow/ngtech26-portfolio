@@ -1,8 +1,8 @@
 import {DocumentIcon} from '@sanity/icons'
-import {RuleType} from '../lib/types'
+import {RuleType} from '../../lib/types'
 
 const jobType = {
-  name: 'Job',
+  name: 'job',
   type: 'document',
   icon: DocumentIcon,
   fields: [

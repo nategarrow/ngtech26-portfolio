@@ -1,9 +1,9 @@
 import {ConfettiIcon} from '@sanity/icons'
 
-import {RuleType} from '../lib/types'
+import {RuleType} from '../../lib/types'
 
 const testimonialType = {
-  name: 'Testimonial',
+  name: 'testimonial',
   type: 'document',
   icon: ConfettiIcon,
   fields: [
