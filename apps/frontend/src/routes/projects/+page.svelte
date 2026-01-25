@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Footer from '@components/Footer.svelte';
-	import Hero from '@components/Hero.svelte';
+	import Footer from '@atomic/layout/Footer.svelte';
+	import Hero from '@atomic/components/Hero/Hero.svelte';
 	import Portfolio from '@atomic/components/ProjectSpotlight/ProjectSpotlight.svelte';
 	import AboutMe from '@components/AboutMe/AboutMe.svelte';
 	import Resume from '@components/Resume/Resume.svelte';

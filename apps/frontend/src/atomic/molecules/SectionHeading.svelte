@@ -1,5 +1,5 @@
 <script>
-	import Badge from '../molecules/Badge.svelte';
+	import Badge from './Badge.svelte';
 
 	/**
 	 * @typedef {Object} Props
