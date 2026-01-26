@@ -8,7 +8,7 @@
 		parallaxFactor?: number; // How much slower the canvas moves relative to scroll (0.5 = half speed)
 	}
 
-	let { centerXPercent = 50, centerYPercent = 80, tiltDegrees = 0, parallaxFactor = 0.25 }: Props = $props();
+	const { centerXPercent = 50, centerYPercent = 80, tiltDegrees = 0, parallaxFactor = 0.25 }: Props = $props();
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D | null;
@@ -19,7 +19,7 @@
 
 	// Parallax scroll offset and fade
 	let scrollY = $state(0);
-	let scrollOpacity = $derived(Math.max(0.5, 1 - scrollY / 1000));
+	const scrollOpacity = $derived(Math.max(0.5, 1 - scrollY / 1000));
 
 	// Animated position values (using bezier curve for arc motion)
 	let animatedX = centerXPercent;
@@ -34,22 +34,21 @@
 	const ANIMATION_DURATION = 1400; // ms
 
 	// Dramatic easing - exponential out for snappy, dramatic feel
-	function easeOutExpo(t: number): number {
-		return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-	}
+	const easeOutExpo = (t: number): number => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
 	// Quadratic bezier curve for smooth arc path
 	// Returns point on curve at t (0-1)
-	function bezierPoint(t: number, p0x: number, p0y: number, p1x: number, p1y: number, p2x: number, p2y: number) {
+	const bezierPoint = (t: number, p0x: number, p0y: number, p1x: number, p1y: number, p2x: number, p2y: number) => {
 		const mt = 1 - t;
+
 		return {
 			x: mt * mt * p0x + 2 * mt * t * p1x + t * t * p2x,
 			y: mt * mt * p0y + 2 * mt * t * p1y + t * t * p2y,
 		};
-	}
+	};
 
 	// Calculate control point for arc that bulges in the desired direction
-	function getControlPoint(startX: number, startY: number, endX: number, endY: number) {
+	const getControlPoint = (startX: number, startY: number, endX: number, endY: number) => {
 		// Midpoint
 		const midX = (startX + endX) / 2;
 		const midY = (startY + endY) / 2;
@@ -77,7 +76,7 @@
 			x: midX + perpX * arcIntensity,
 			y: midY + perpY * arcIntensity,
 		};
-	}
+	};
 
 	// Store bezier control point
 	let controlX = 0;
@@ -125,7 +124,7 @@
 	];
 
 	// Interpolate between gradient stops
-	function getColorAtPosition(t: number): { r: number; g: number; b: number; a: number } {
+	const getColorAtPosition = (t: number): { r: number; g: number; b: number; a: number } => {
 		// Find the two stops to interpolate between
 		let lowStop = gradientStops[0];
 		let highStop = gradientStops[gradientStops.length - 1];
@@ -148,12 +147,12 @@
 			b: Math.round(lowStop.b + (highStop.b - lowStop.b) * factor),
 			a: lowStop.a + (highStop.a - lowStop.a) * factor,
 		};
-	}
+	};
 
 	const PARTICLE_COUNT = 120000;
 	const ROTATION_SPEED = 0.0001;
 
-	function createRingTexture(size: number) {
+	const createRingTexture = (size: number) => {
 		ringTexture = new OffscreenCanvas(size, size);
 		const texCtx = ringTexture.getContext('2d');
 		if (!texCtx) return;
@@ -183,9 +182,9 @@
 			texCtx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
 			texCtx.fill();
 		}
-	}
+	};
 
-	function draw() {
+	const draw = () => {
 		if (!ctx || !canvas || !ringTexture) return;
 
 		// Animate position along bezier curve if animation is in progress
@@ -239,9 +238,9 @@
 		ctx.restore();
 
 		animationId = requestAnimationFrame(draw);
-	}
+	};
 
-	function handleResize() {
+	const handleResize = () => {
 		if (!canvas) return;
 
 		const rect = canvas.getBoundingClientRect();
@@ -264,11 +263,11 @@
 			textureSize = newTextureSize;
 			createRingTexture(textureSize);
 		}
-	}
+	};
 
-	function handleScroll() {
+	const handleScroll = () => {
 		scrollY = window.scrollY;
-	}
+	};
 
 	onMount(() => {
 		handleResize();

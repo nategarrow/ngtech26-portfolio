@@ -4,7 +4,7 @@
 	import { animate, inView, stagger } from 'motion';
 	import { onMount } from 'svelte';
 
-	let { position, company, startDate, endDate, note }: JobType = $props();
+	const { position, company, startDate, endDate, note }: JobType = $props();
 	const startYear = startDate && new Date(startDate).getFullYear();
 	const endYear = endDate && new Date(endDate).getFullYear();
 

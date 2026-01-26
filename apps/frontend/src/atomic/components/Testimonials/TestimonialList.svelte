@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '@splidejs/svelte-splide/css';
-	import { Splide, SplideTrack, SplideSlide } from '@splidejs/svelte-splide';
+	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
 
 	import type { Testimonial } from '@lib/types/sanity.types';
 	import TestimonialCard from '@components/Testimonials/TestimonialCard.svelte';

@@ -7,13 +7,13 @@
 	const { headingText, subheadingText }: Props = $props();
 </script>
 
-{#snippet heading(heading: string)}
-	<h2 class="text-3xl font-semibold tracking-widest text-white xl:text-4xl">{heading}</h2>
+{#snippet heading(headText: string)}
+	<h2 class="text-3xl font-semibold tracking-widest text-white xl:text-4xl">{headText}</h2>
 {/snippet}
 
-{#snippet subheading(subheading: string)}
+{#snippet subheading(subheadText: string)}
 	<div class="mx-auto max-w-3xl text-lg xl:text-xl">
-		{@html subheading}
+		{@html subheadText}
 	</div>
 {/snippet}
 

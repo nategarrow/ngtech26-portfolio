@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
-	import { dndzone, type Item, type DndEvent } from 'svelte-dnd-action';
+	import { type DndEvent, type Item, dndzone } from 'svelte-dnd-action';
 
 	type Props = {
 		skills: {
@@ -8,18 +8,19 @@
 			name: string;
 		}[];
 	};
-	let { skills }: Props = $props();
+	const { skills }: Props = $props();
 
 	const flipDurationMs = 300;
 	const dropTargetStyle = { outline: 'none' };
 	let items: Item[] = $state(skills);
 
-	function handleDndConsider(e: CustomEvent<DndEvent>) {
+	const handleDndConsider = (e: CustomEvent<DndEvent>) => {
 		items = e.detail.items;
-	}
-	function handleDndFinalize(e: CustomEvent<DndEvent>) {
+	};
+
+	const handleDndFinalize = (e: CustomEvent<DndEvent>) => {
 		items = e.detail.items;
-	}
+	};
 </script>
 
 <div class="skills mx-auto w-full space-y-8">

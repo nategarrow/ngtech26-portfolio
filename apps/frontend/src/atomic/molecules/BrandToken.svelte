@@ -4,7 +4,7 @@
 	import { cva } from 'cva';
 	import { twMerge } from 'tailwind-merge';
 
-	let { onclick, name, position, size, rotate } = $$props;
+	const { onclick, name, position, size, rotate } = $$props;
 
 	const tokenClass = cva('icon shadow-2xl p-[2px]', {
 		variants: {

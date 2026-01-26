@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from 'svelte-awesome/components/Icon.svelte';
-	import { faLinkedin, faGithub } from '@awesome.me/kit-7afeb9cb5d/icons/classic/brands';
+	import { faGithub, faLinkedin } from '@awesome.me/kit-7afeb9cb5d/icons/classic/brands';
 	import { faDownload } from '@awesome.me/kit-7afeb9cb5d/icons/sharp/light';
 	import { PUBLIC_RESUME_FILENAME } from '$env/static/public';
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { scroll, animate } from 'motion';
+	import { animate, scroll } from 'motion';
 
 	onMount(() => {
 		const titleH3 = document.getElementById('and-more');

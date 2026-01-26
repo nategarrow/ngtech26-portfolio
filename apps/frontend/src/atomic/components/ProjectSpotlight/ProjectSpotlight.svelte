@@ -6,14 +6,7 @@
 	const { projectHighlights }: { projectHighlights: Project[] } = $props();
 
 	let activeClientId = $state(projectHighlights?.[0]?._id);
-	let activeClient = $derived(projectHighlights?.find(project => project._id === activeClientId));
-
-	const companyLogos = {
-		deepgram: '/images/deepgram-logo.svg',
-		webstacks: '/images/webstacks-logo.svg',
-		semgrep: '/images/semgrep-logo.svg',
-		arcesium: '/images/arcesium-logo.svg',
-	} as const;
+	const activeClient = $derived(projectHighlights?.find(project => project._id === activeClientId));
 </script>
 
 <section id="portfolio" class="px-4 py-16">

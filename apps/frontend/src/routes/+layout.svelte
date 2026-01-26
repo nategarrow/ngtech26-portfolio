@@ -12,15 +12,16 @@
 	import PlanetRings from '@components/PlanetRings/PlanetRings.svelte';
 	import Header from '../atomic/layout/Header/Header.svelte';
 
-	let { children } = $props();
+	const { children } = $props();
 
 	// Ring position based on current route
-	let ringPosition = $derived.by(() => {
+	const ringPosition = $derived.by(() => {
 		const pathname = $page.url.pathname;
 		if (pathname.startsWith('/projects')) {
 			// /projects: bottom-left quadrant visible, center at upper-right off-screen
 			return { centerX: 150, centerY: 15, tilt: 20 };
 		}
+
 		// Homepage and default: arc at bottom, centered
 		return { centerX: 50, centerY: 110, tilt: 0 };
 	});

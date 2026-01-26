@@ -7,7 +7,7 @@
 		experiences: JobType[];
 	};
 
-	let { experiences }: Props = $props();
+	const { experiences }: Props = $props();
 </script>
 
 <section class="relative z-1 py-12">

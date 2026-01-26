@@ -78,7 +78,7 @@
 		};
 	});
 
-	function checkActiveSection() {
+	const checkActiveSection = () => {
 		const sections = document.querySelectorAll('section[id]');
 		if (sections.length === 0) return;
 
@@ -91,6 +91,7 @@
 			if (firstSection && homePageSections.includes(firstSection.id)) {
 				activeNavItem = firstSection.id;
 			}
+
 			return;
 		}
 
@@ -100,6 +101,7 @@
 			if (lastSection && homePageSections.includes(lastSection.id)) {
 				activeNavItem = lastSection.id;
 			}
+
 			return;
 		}
 
@@ -113,7 +115,7 @@
 				}
 			}
 		}
-	}
+	};
 </script>
 
 <header class="fixed top-0 left-0 z-50 w-full backdrop-blur-xs">

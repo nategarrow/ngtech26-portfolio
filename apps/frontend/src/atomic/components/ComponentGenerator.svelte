@@ -9,8 +9,7 @@
 		sections: any[];
 	};
 
-	let { sections }: Props = $props();
-	console.log('sections: ', sections);
+	const { sections }: Props = $props();
 
 	const componentMap = {
 		hero: Hero,

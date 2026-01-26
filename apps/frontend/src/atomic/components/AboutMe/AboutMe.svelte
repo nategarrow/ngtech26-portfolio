@@ -7,7 +7,7 @@
 
 	import type { AboutMe } from '@lib/types/sanity.types';
 
-	let { aboutContent, aboutStats }: AboutMe = $props();
+	const { aboutContent, aboutStats }: AboutMe = $props();
 
 	let statsListEl: HTMLElement;
 
