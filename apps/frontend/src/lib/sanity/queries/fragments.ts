@@ -15,7 +15,6 @@ export const imageFragment = groq`
 export const richImageFragment = groq`
 	_type == "richImage" => {
 		_type,
-		_key,
 		alt,
 		image {
 			${imageFragment}
@@ -44,6 +43,10 @@ export const seoFragment = groq`
 		"slug": slug.current,
 		metaTitle,
 		metaDescription[] {
-			${richTextFragment}}
+			${richTextFragment}
+		},
+		ogImage {
+			${imageFragment}
+		},
 	}
 `;

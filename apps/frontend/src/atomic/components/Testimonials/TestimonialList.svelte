@@ -2,13 +2,13 @@
 	import '@splidejs/svelte-splide/css';
 	import { Splide, SplideTrack, SplideSlide } from '@splidejs/svelte-splide';
 
-	import type { TestimonialType } from '@lib/types/schema';
+	import type { Testimonial } from '@lib/types/sanity.types';
 	import TestimonialCard from '@components/Testimonials/TestimonialCard.svelte';
 
-	const { testimonials }: { testimonials: TestimonialType[] } = $props();
+	const { testimonials }: { testimonials: Testimonial[] } = $props();
 </script>
 
-<section id="success-stories" class="relative z-[1] mt-8 md:mt-28">
+<section id="success-stories" class="relative z-1 mt-8 md:mt-28">
 	<div class="mx-auto max-w-6xl space-y-12 px-4 lg:space-y-16">
 		{#if testimonials}
 			<div

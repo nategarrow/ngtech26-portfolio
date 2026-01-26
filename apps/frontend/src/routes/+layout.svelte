@@ -9,7 +9,7 @@
 	import { page } from '$app/stores';
 	import { injectSpeedInsights } from '@vercel/speed-insights';
 	import { inject } from '@vercel/analytics';
-	import PlanetRings from '@components/PlanetRings.svelte';
+	import PlanetRings from '@components/PlanetRings/PlanetRings.svelte';
 	import Header from '../atomic/layout/Header/Header.svelte';
 
 	let { children } = $props();

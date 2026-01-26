@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { TestimonialType } from '@lib/types/schema';
+	import { urlFor } from '@lib/sanity/image';
+	import type { Testimonial } from '@lib/types/sanity.types';
 	import { PortableText } from '@portabletext/svelte';
 
-	const { id, name, role, company, imageUrl, quote }: TestimonialType = $props();
+	const { _id, name, role, company, image, quote }: Testimonial = $props();
 </script>
 
-<div id={id || ''} class="testimonial-card w-full p-3 md:p-8 xl:px-32">
+<div id={_id || ''} class="testimonial-card w-full p-3 md:p-8 xl:px-32">
 	<div class="space-y-8 lg:space-y-12">
 		{#if quote}
 			<div class="quote-text text-lg leading-relaxed font-normal tracking-wide whitespace-pre-line">
@@ -16,8 +17,8 @@
 			<div
 				class="image-wrapper bg-card-background grid aspect-square size-12 place-items-center overflow-hidden rounded-full p-3 lg:size-16"
 			>
-				{#if imageUrl}
-					<img src={imageUrl} alt={name} class="size-full" />
+				{#if image?.asset}
+					<img src={urlFor(image).auto('format').width(72).url()} alt={name} class="size-full" />
 				{/if}
 			</div>
 			<p class="flex flex-col text-xl">

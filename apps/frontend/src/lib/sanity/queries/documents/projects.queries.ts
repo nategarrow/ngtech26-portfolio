@@ -1,5 +1,5 @@
 import groq from 'groq';
-import { imageFragment } from '../fragments';
+import { richImageFragment } from '../fragments';
 
 export const projectQuery = groq`
   _id,
@@ -8,7 +8,10 @@ export const projectQuery = groq`
 	techStack,
 	client,
 	featuredImage {
-		${imageFragment}
+		${richImageFragment}
+	},
+	clientLogo {
+		${richImageFragment}
 	},
 	stats[] {
 		_key,

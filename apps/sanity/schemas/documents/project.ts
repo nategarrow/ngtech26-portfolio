@@ -1,5 +1,5 @@
 import {CodeBlockIcon} from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import type {StringRule, UrlRule} from 'sanity'
 
 const projectType = defineType({
@@ -8,8 +8,8 @@ const projectType = defineType({
   icon: CodeBlockIcon,
   title: 'Project',
   groups: [
-    { name: 'content', title: 'Content', default: true },
-    { name: 'seo', title: 'SEO' },
+    {name: 'content', title: 'Content', default: true},
+    {name: 'seo', title: 'SEO'},
   ],
   fields: [
     defineField({
@@ -79,7 +79,7 @@ const projectType = defineType({
     }),
     defineField({
       name: 'featuredImage',
-      type: 'file',
+      type: 'richImage',
       group: 'content',
       title: 'Featured Image',
     }),

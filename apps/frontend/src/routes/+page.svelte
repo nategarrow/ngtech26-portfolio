@@ -1,26 +1,14 @@
 <script lang="ts">
-	// import Footer from '@atomic/layout/Footer.svelte';
-	// import Hero from '@atomic/components/Hero/Hero.svelte';
-	// import Portfolio from '@atomic/components/ProjectSpotlight/ProjectSpotlight.svelte';
-	// import AboutMe from '@components/AboutMe/AboutMe.svelte';
-	// import Resume from '@components/Resume/Resume.svelte';
-	// import TestimonialList from '@components/Testimonials/TestimonialList.svelte';
-
+	import ComponentGenerator from '@atomic/components/ComponentGenerator.svelte';
+	import { toPlainText } from '@portabletext/svelte';
 
 	const { data } = $props();
-	console.log('🚀 ~ page data:', data);
-
-	// const { heroContent, aboutContent, aboutStats, projectHighlights, experiences, testimonials } = homeData?.[0];
+	const { sections, seo } = $derived(data || {});
+	console.log('seo: ', seo);
 </script>
 
-<!-- <Hero {heroContent} />
-
-<AboutMe {aboutContent} {aboutStats} />
-
-<Portfolio {projectHighlights} />
-
-<Resume {experiences} />
-
-<TestimonialList {testimonials} />
-
-<Footer /> -->
+<svelte:head>
+	<title>{seo.metaTitle}</title>
+	<meta name="description" content={toPlainText(seo.metaDescription)} />
+</svelte:head>
+<ComponentGenerator {sections} />

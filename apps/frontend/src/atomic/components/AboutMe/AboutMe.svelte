@@ -5,17 +5,9 @@
 
 	import ProfileCard from '@components/AboutMe/ProfileCard.svelte';
 
-	type Props = {
-		aboutContent: any;
-		aboutStats: {
-			title: string;
-			value: string;
-			valuePrefix?: string;
-			valueSuffix?: string;
-		}[];
-	};
+	import type { AboutMe } from '@lib/types/sanity.types';
 
-	let { aboutContent, aboutStats }: Props = $props();
+	let { aboutContent, aboutStats }: AboutMe = $props();
 
 	let statsListEl: HTMLElement;
 

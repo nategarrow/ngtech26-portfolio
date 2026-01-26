@@ -1,10 +1,9 @@
 <script lang="ts">
-	import type { ProjectsProps } from '@lib/types/schema.d';
 	import { stringToKebabCase } from '../../../utils/textFunctions';
+	import type { Project } from '@lib/types/sanity.types';
+	import { urlFor } from '@lib/sanity/image';
 
-	type Props = ProjectsProps;
-
-	const { title, client, description, techStack, stats, featuredImageUrl, projectLink, agencyLink }: Props = $props();
+	const { title, client, description, techStack, stats, featuredImage, projectLink, agencyLink }: Project = $props();
 </script>
 
 <div
@@ -34,20 +33,20 @@
 							</div>
 						{/if}
 					</div>
-					{#if projectLink?.current || agencyLink?.current}
+					{#if projectLink || agencyLink}
 						<div class="flex flex-col gap-4 text-center md:flex-row md:text-left">
-							{#if projectLink?.current}
+							{#if projectLink}
 								<a
-									href={projectLink?.current}
+									href={projectLink}
 									rel="noopener noreferrer"
 									target="_blank"
 									class="border-violet hover:bg-blue-light/10 font-subtitle rounded-sm border px-6 py-2 font-medium hover:border-white"
 									>View Project</a
 								>
 							{/if}
-							{#if agencyLink?.current}
+							{#if agencyLink}
 								<a
-									href={agencyLink?.current}
+									href={agencyLink}
 									rel="noopener noreferrer"
 									target="_blank"
 									class="border-violet hover:bg-blue-light/10 font-subtitle rounded-sm border px-6 py-2 font-medium hover:border-white"
@@ -74,13 +73,18 @@
 				</div>
 			</div>
 		</div>
-		{#if featuredImageUrl}
+		{#if featuredImage?.image}
 			<div class="absolute top-1/2 left-0 z-0 h-full w-full md:top-0 md:left-1/2">
 				<div
 					class="project-thumbnail before:to-card-background/30 before:from-background relative aspect-video h-full max-h-full w-full overflow-hidden before:absolute before:top-0 before:left-0 before:h-full before:w-full before:max-w-full before:bg-linear-to-b before:content-[''] md:before:bg-linear-to-r"
 				>
 					<div class="max-w-full">
-						<img src={featuredImageUrl} alt={title} class="h-full w-full object-cover" />
+						<img
+							src={urlFor(featuredImage?.image).width(1280).auto('format').url()}
+							alt={title}
+							class="h-full w-full object-cover"
+							loading="eager"
+						/>
 					</div>
 				</div>
 			</div>

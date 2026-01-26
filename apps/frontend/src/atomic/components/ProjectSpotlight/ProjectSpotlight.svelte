@@ -1,17 +1,12 @@
 <script lang="ts">
 	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
-	import type { ProjectsProps } from '@lib/types/schema';
+	import { urlFor } from '@lib/sanity/image';
+	import type { Project } from '@lib/types/sanity.types';
 
-	type Props = {
-		projectHighlights: ProjectsProps[];
-	};
+	const { projectHighlights }: { projectHighlights: Project[] } = $props();
 
-	const { projectHighlights }: Props = $props();
-
-	let activeClient = $state(projectHighlights[0].client);
-	const clientData = $derived(
-		projectHighlights.find(project => project.client === activeClient) || projectHighlights[0]
-	);
+	let activeClientId = $state(projectHighlights?.[0]?._id);
+	let activeClient = $derived(projectHighlights?.find(project => project._id === activeClientId));
 
 	const companyLogos = {
 		deepgram: '/images/deepgram-logo.svg',
@@ -25,16 +20,16 @@
 	<div class="border-wrap-top mx-auto max-w-5xl space-y-16 px-0 pt-4 md:space-y-24 md:px-8 md:pt-8">
 		<div id="project-list" class="flex flex-col gap-8 md:gap-10">
 			<div class="border-blue-light/50 flex justify-between gap-4 overflow-auto rounded-2xl border p-2">
-				{#each projectHighlights as project, idx}
+				{#each projectHighlights as project (project._id)}
 					<button
-						class="[.isactive]:bg-card-background relative flex w-full flex-1 cursor-pointer items-center justify-center rounded-xl px-4 py-1 text-center text-xl font-bold tracking-wide opacity-50 transition-opacity duration-150 before:absolute before:inset-0 before:rounded-xl before:content-[''] md:py-2 [.isactive]:opacity-100"
+						class="[.active]:bg-card-background relative flex w-full flex-1 cursor-pointer items-center justify-center rounded-xl px-4 py-1 text-center text-xl font-bold tracking-wide opacity-50 transition-opacity duration-150 before:absolute before:inset-0 before:rounded-xl before:content-[''] md:py-2 [.active]:opacity-100"
 						aria-label={project.client}
-						class:isactive={activeClient === project.client}
-						onclick={() => (activeClient = project.client)}
+						class:active={activeClientId === project._id}
+						onclick={() => (activeClientId = project._id)}
 					>
-						{#if companyLogos[project.client.toLowerCase() as keyof typeof companyLogos]}
+						{#if project?.clientLogo?.image}
 							<img
-								src={companyLogos[project.client.toLowerCase() as keyof typeof companyLogos]}
+								src={urlFor(project.clientLogo.image).width(256).auto('format').url()}
 								alt={project.client}
 								class="h-8 w-full md:h-6"
 							/>
@@ -45,7 +40,7 @@
 				{/each}
 			</div>
 			<div>
-				<HighlightCard {...clientData} />
+				<HighlightCard {...activeClient} />
 			</div>
 		</div>
 	</div>
