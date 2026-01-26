@@ -9,7 +9,7 @@ export const testimonialQuery = groq`
 	publishDate,
 	image {
 		${imageFragment}
-	}
+	},
 	quote[] {
 		${richTextFragment}
 	}

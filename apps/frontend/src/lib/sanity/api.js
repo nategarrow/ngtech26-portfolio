@@ -7,6 +7,7 @@ import {
 
 // @ts-ignore
 export const assertEnvVar = (value, name) => {
+	console.log('value: ', value);
 	if (value === undefined) {
 		throw new Error(`Missing environment variable: ${name}`);
 	}

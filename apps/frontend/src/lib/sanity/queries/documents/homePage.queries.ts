@@ -22,7 +22,6 @@ export const homePageQuery = groq`
 `;
 
 export const getHomePageData = async () => {
-	console.log('🚀 ~ homePageQuery:', homePageQuery);
 	const data = await client.fetch(homePageQuery);
 
 	return data;
