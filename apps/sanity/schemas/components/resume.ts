@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const resume = defineType({
   name: 'resume',
@@ -11,16 +11,16 @@ export const resume = defineType({
         defineArrayMember({
           name: 'job',
           type: 'reference',
-          to: {type: 'job'},
+          to: { type: 'job' },
         }),
       ],
     }),
   ],
-	preview: {
-		prepare: () => {
-			return {
-				title: 'Resume',
-			}
-		},
-	}
+  preview: {
+    prepare: () => {
+      return {
+        title: 'Resume',
+      }
+    },
+  },
 })

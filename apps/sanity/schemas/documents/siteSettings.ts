@@ -1,12 +1,12 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const siteSettings = defineType({
   name: 'siteSettings',
   type: 'document',
   title: 'Site Settings',
   groups: [
-    {name: 'content', title: 'Content', default: true},
-    {name: 'socials', title: 'Socials'},
+    { name: 'content', title: 'Content', default: true },
+    { name: 'socials', title: 'Socials' },
   ],
   fields: [
     defineField({
@@ -30,7 +30,7 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'linkedIn',
-			title: 'LinkedIn',
+      title: 'LinkedIn',
       type: 'url',
       group: 'socials',
     }),

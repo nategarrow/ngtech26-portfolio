@@ -1,6 +1,6 @@
-import {defineType, defineArrayMember} from 'sanity'
+import { defineType, defineArrayMember } from 'sanity'
 
-import {components} from '../components'
+import { components } from '../components'
 
 export const sections = defineType({
   name: 'sections',

@@ -1,5 +1,5 @@
-import {DocumentIcon} from '@sanity/icons'
-import {RuleType} from '../../lib/types'
+import { DocumentIcon } from '@sanity/icons'
+import { RuleType } from '../../lib/types'
 
 const jobType = {
   name: 'job',
@@ -30,7 +30,7 @@ const jobType = {
       name: 'endDate',
       type: 'date',
       title: 'End Date',
-      hidden: ({document}) => document?.currentPosition,
+      hidden: ({ document }) => document?.currentPosition,
     },
     {
       title: 'Note',
@@ -52,12 +52,12 @@ const jobType = {
     {
       title: 'Start Date, New',
       name: 'startDateDesc',
-      by: [{field: 'startDate', direction: 'desc'}],
+      by: [{ field: 'startDate', direction: 'desc' }],
     },
     {
       title: 'Start Date, Old',
       name: 'startDateAsc',
-      by: [{field: 'startDate', direction: 'asc'}],
+      by: [{ field: 'startDate', direction: 'asc' }],
     },
   ],
   preview: {

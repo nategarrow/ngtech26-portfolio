@@ -1,14 +1,14 @@
-import {defineType, defineField, SlugValidationContext} from 'sanity'
+import { defineType, defineField, SlugValidationContext } from 'sanity'
 
-import {PrefixedSlugInput} from '../../lib/components/PrefixedSlugInput'
+import { PrefixedSlugInput } from '../../lib/components/PrefixedSlugInput'
 
 export const seo = defineType({
   name: 'seo',
   title: 'SEO',
   type: 'object',
   fieldsets: [
-    {name: 'metaInfo', title: 'Meta Information'},
-    {name: 'openGraph', title: 'Open Graph'},
+    { name: 'metaInfo', title: 'Meta Information' },
+    { name: 'openGraph', title: 'Open Graph' },
   ],
   fields: [
     defineField({
@@ -25,7 +25,7 @@ export const seo = defineType({
         input: PrefixedSlugInput,
       },
       validation: (Rule) =>
-        Rule.required().custom((slug: {current?: string} | undefined) => {
+        Rule.required().custom((slug: { current?: string } | undefined) => {
           if (!slug || !slug.current) return true
 
           return slug.current.endsWith('/') ? 'Slug must NOT end with a trailing slash ("/")' : true
@@ -54,9 +54,9 @@ export const seo = defineType({
 })
 
 export async function isUniqueSlug(slug: string, context: SlugValidationContext) {
-  const {document, getClient} = context
+  const { document, getClient } = context
 
-  const client = getClient({apiVersion: '2025-02-19'})
+  const client = getClient({ apiVersion: '2025-02-19' })
   const id = (document as any)?._id?.replace(/^drafts\./, '')
   const params = {
     id,

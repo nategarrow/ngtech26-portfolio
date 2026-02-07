@@ -1,11 +1,11 @@
-import { defineArrayMember, defineField, defineType, type StringRule } from "sanity";
+import { defineArrayMember, defineField, defineType, type StringRule } from 'sanity'
 
 export const skillsList = defineType({
-	name: 'skillsList',
-	title: 'Skills List',
-	type: 'object',
-	fields: [
-		  defineField({
+  name: 'skillsList',
+  title: 'Skills List',
+  type: 'object',
+  fields: [
+    defineField({
       name: 'skills',
       type: 'array',
       of: [
@@ -16,12 +16,12 @@ export const skillsList = defineType({
         }),
       ],
     }),
-	],
-	preview: {
-		prepare: () => {
-			return {
-				title: 'Skills List',
-			}
-		},
-	}
+  ],
+  preview: {
+    prepare: () => {
+      return {
+        title: 'Skills List',
+      }
+    },
+  },
 })

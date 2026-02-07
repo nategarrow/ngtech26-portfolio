@@ -1,4 +1,4 @@
-import {DocumentIcon} from '@sanity/icons'
+import { DocumentIcon } from '@sanity/icons'
 
 const skillsType = {
   name: 'skills',

@@ -21,7 +21,6 @@ export const richImage = defineType({
       description: 'Alternative text for accessibility. Describe the image for screen readers.',
       validation: (Rule) => Rule.required(),
     }),
-
   ],
   preview: {
     select: {

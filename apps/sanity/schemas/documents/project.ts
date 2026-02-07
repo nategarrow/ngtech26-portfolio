@@ -1,15 +1,15 @@
-import {CodeBlockIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import type {StringRule, UrlRule} from 'sanity'
+import { CodeBlockIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity'
+import type { StringRule, UrlRule } from 'sanity'
 
-const projectType = defineType({
+const project = defineType({
   name: 'project',
   type: 'document',
   icon: CodeBlockIcon,
   title: 'Project',
   groups: [
-    {name: 'content', title: 'Content', default: true},
-    {name: 'seo', title: 'SEO'},
+    { name: 'content', title: 'Content', default: true },
+    { name: 'seo', title: 'SEO' },
   ],
   fields: [
     defineField({
@@ -112,7 +112,7 @@ const projectType = defineType({
       title: 'title',
       client: 'client',
     },
-    prepare({title, client}: {title?: string; client?: string}) {
+    prepare({ title, client }: { title?: string; client?: string }) {
       return {
         title: client,
         subtitle: title,
@@ -121,4 +121,4 @@ const projectType = defineType({
   },
 })
 
-export default projectType
+export default project

@@ -1,9 +1,21 @@
 import homePageType from './homePage'
 import jobType from './job'
 import skillsType from './skills'
-import projectType from './project'
+import project from './project'
 import testimonialType from './testimonial'
-import {siteSettings} from './siteSettings'
-import {richImage} from './image'
+import { siteSettings } from './siteSettings'
+import { richImage } from './image'
 
-export const documents = [homePageType, jobType, testimonialType, projectType, skillsType, siteSettings, richImage]
+// Taxonomy
+import { projectType } from './taxonomies'
+
+export const documents = [
+  homePageType,
+  jobType,
+  testimonialType,
+  project,
+  skillsType,
+  siteSettings,
+  richImage,
+  projectType,
+]

@@ -1,7 +1,7 @@
-import {HomeIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { HomeIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import type {StringRule} from 'sanity'
+import type { StringRule } from 'sanity'
 
 const homePageType = defineType({
   name: 'homePage',
@@ -57,7 +57,7 @@ const homePageType = defineType({
       name: 'sections',
       type: 'sections',
       group: 'content',
-    }),    
+    }),
   ],
 })
 

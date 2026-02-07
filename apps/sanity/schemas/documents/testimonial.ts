@@ -1,6 +1,6 @@
-import {ConfettiIcon} from '@sanity/icons'
+import { ConfettiIcon } from '@sanity/icons'
 
-import {RuleType} from '../../lib/types'
+import { RuleType } from '../../lib/types'
 
 const testimonialType = {
   name: 'testimonial',
@@ -47,22 +47,22 @@ const testimonialType = {
     {
       title: 'Name, ASC',
       name: 'name',
-      by: [{field: 'name', direction: 'asc'}],
+      by: [{ field: 'name', direction: 'asc' }],
     },
     {
       title: 'Name, DESC',
       name: 'name',
-      by: [{field: 'name', direction: 'desc'}],
+      by: [{ field: 'name', direction: 'desc' }],
     },
     {
       title: 'Publish Date, New',
       name: 'publishDateDesc',
-      by: [{field: 'publishDate', direction: 'desc'}],
+      by: [{ field: 'publishDate', direction: 'desc' }],
     },
     {
       title: 'Publish Date, Old',
       name: 'publishDateAsc',
-      by: [{field: 'publishDate', direction: 'asc'}],
+      by: [{ field: 'publishDate', direction: 'asc' }],
     },
   ],
   preview: {
@@ -71,7 +71,7 @@ const testimonialType = {
       role: 'role',
       company: 'company',
     },
-    prepare: ({name, role, company}: {name?: string; role?: string; company?: string}) => {
+    prepare: ({ name, role, company }: { name?: string; role?: string; company?: string }) => {
       return {
         title: name,
         subtitle: company ? `${role || ''}, ${company || ''}` : role || '',

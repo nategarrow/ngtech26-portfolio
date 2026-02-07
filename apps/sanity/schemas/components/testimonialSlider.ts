@@ -1,9 +1,9 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const testimonialSlider = defineType({
   name: 'testimonialSlider',
   type: 'object',
-	title: 'Testimonial Slider',
+  title: 'Testimonial Slider',
   fields: [
     defineField({
       name: 'testimonials',
@@ -12,16 +12,16 @@ export const testimonialSlider = defineType({
         defineArrayMember({
           name: 'testimonial',
           type: 'reference',
-          to: {type: 'testimonial'},
+          to: { type: 'testimonial' },
         }),
       ],
     }),
   ],
-	preview: {
-		prepare: () => {
-			return {
-				title: 'Testimonial Slider',
-			}
-		},
-	}
-});
+  preview: {
+    prepare: () => {
+      return {
+        title: 'Testimonial Slider',
+      }
+    },
+  },
+})

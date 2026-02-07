@@ -21,7 +21,8 @@ export const PrefixedSlugInput = (props: any) => {
 
   // Use the default slug input component that Sanity provides
   const DefaultSlugInput = props.renderDefault
-  const displayedPrefix = PAGE_TYPES.find(page => page.type === parentDocumentType)?.slugPrefix || '/'
+  const displayedPrefix =
+    PAGE_TYPES.find((page) => page.type === parentDocumentType)?.slugPrefix || '/'
 
   return (
     <Flex>
@@ -50,4 +51,3 @@ export const PrefixedSlugInput = (props: any) => {
     </Flex>
   )
 }
-
