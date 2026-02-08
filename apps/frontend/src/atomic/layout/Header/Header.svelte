@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { page as statePage } from '$app/state';
 
-  const resumeLink = $derived(statePage.data.resumeLink);
+	const resumeLink = $derived(statePage.data.resumeLink);
 
 	let activeNavItem = $state($page.url.pathname === '/' ? 'home' : $page.url.pathname.replace('/', ''));
 	const homePageSections = ['home', 'about-me', 'success-stories'];

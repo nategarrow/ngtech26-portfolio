@@ -3,9 +3,9 @@
 	import { faGithub, faLinkedin } from '@awesome.me/kit-7afeb9cb5d/icons/classic/brands';
 	import { faDownload } from '@awesome.me/kit-7afeb9cb5d/icons/sharp/light';
 
- import { page } from '$app/state';
+	import { page } from '$app/state';
 
-  const resumeLink = $derived(page.data.resumeLink);
+	const resumeLink = $derived(page.data.resumeLink);
 </script>
 
 <div class="profile-card relative w-full max-w-3xl">
@@ -41,17 +41,17 @@
 					</a>
 				</li>
 				{#if resumeLink?.asset?.url}
-				<li>
-					<a
-						href={resumeLink?.asset?.url}
-						target="_blank"
-						rel="noopener noreferrer"
-						title="Resume"
-						class="text-offwhite hover:text-blue"
-					>
-						<Icon data={faDownload} class="size-6" />
-					</a>
-				</li>
+					<li>
+						<a
+							href={resumeLink?.asset?.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Resume"
+							class="text-offwhite hover:text-blue"
+						>
+							<Icon data={faDownload} class="size-6" />
+						</a>
+					</li>
 				{/if}
 			</ul>
 		</div>

@@ -1,5 +1,7 @@
 <script lang="ts">
-	import HighlightCard from "@atomic/components/ProjectSpotlight/HighlightCard.svelte";
+	import { fade } from 'svelte/transition';
+
+	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
 
 	const { data } = $props();
 
@@ -17,68 +19,72 @@
 		} else if (filter === 'tag') {
 			activeTag = newValue;
 		}
-	}
+	};
 </script>
 
-<section class="pt-20 pb-12 md:pt-32 md:pb-20">
-	<div class="container py-5 space-y-12">
+<section class="pt-20 pb-12 md:pt-32 md:pb-20" in:fade>
+	<div class="container space-y-12 py-5">
 		<div class="flex flex-col gap-8">
 			<h1 class="text-2xl md:text-4xl lg:text-5xl">All Projects</h1>
 			{#if !workInProgress}
-			<div class="taxonomies flex flex-col gap-4">
-				{#if taxonomies?.types}
-					<div class="flex gap-4 flex-wrap">
-						<button
-					 		onclick={() => setActiveFilter('all', 'type')}
-							class="taxonomy-type"
-							class:active={activeType === 'all'}
-						>
-							All
-						</button>
-						{#each taxonomies.types as type}
-							<button onclick={() => setActiveFilter(type._id, 'type')} class:active={activeType === type._id} class="taxonomy-type">{type.title}</button>
-						{/each}
-					</div>
-				{/if}
-				{#if taxonomies?.tags}
-					<div class="flex gap-4 flex-wrap">
-						<button
-					 		onclick={() => setActiveFilter('all', 'tag')}
-							class="taxonomy-tag"
-							class:active={activeTag === 'all'}
-						>
-							All
-						</button>
-
-						{#each taxonomies.tags as tag}
+				<div class="taxonomies flex flex-col gap-4">
+					{#if taxonomies?.types}
+						<div class="flex flex-wrap gap-4">
 							<button
-							 	onclick={() => setActiveFilter(tag._id, 'tag')}
-								class:active={activeTag === tag._id}
-								class="taxonomy-tag"
+								onclick={() => setActiveFilter('all', 'type')}
+								class="taxonomy-type"
+								class:active={activeType === 'all'}
 							>
-								{tag.title}
+								All
 							</button>
-						{/each}
-					</div>
-				{/if}
-			</div>
-			{:else }
-			<div class="space-y-2">
-				<p>⚠️ Oh no! This page is currently under construction. ⚠️</p>
-				<p>That being said, I'm glad you're here and want to showcase a few of my previous projects. Thank you for visiting!</p>
-			</div>
-			{/if}
+							{#each taxonomies.types as type}
+								<button
+									onclick={() => setActiveFilter(type._id, 'type')}
+									class:active={activeType === type._id}
+									class="taxonomy-type">{type.title}</button
+								>
+							{/each}
+						</div>
+					{/if}
+					{#if taxonomies?.tags}
+						<div class="flex flex-wrap gap-4">
+							<button
+								onclick={() => setActiveFilter('all', 'tag')}
+								class="taxonomy-tag"
+								class:active={activeTag === 'all'}
+							>
+								All
+							</button>
 
+							{#each taxonomies.tags as tag}
+								<button
+									onclick={() => setActiveFilter(tag._id, 'tag')}
+									class:active={activeTag === tag._id}
+									class="taxonomy-tag"
+								>
+									{tag.title}
+								</button>
+							{/each}
+						</div>
+					{/if}
+				</div>
+			{:else}
+				<div class="space-y-2">
+					<p>⚠️ Oh no! This page is currently under construction. ⚠️</p>
+					<p>
+						That being said, I'm glad you're here and want to showcase a few of my previous projects. Thank you for
+						visiting!
+					</p>
+				</div>
+			{/if}
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-10">
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-10">
 			{#each projects as project}
 				<HighlightCard {...project} simple />
 			{/each}
 		</div>
 		<div class="text-center">
-			<span class="text-3xl text-white">
-				And many more!
-			</span>
+			<span class="text-3xl text-white"> And many more! </span>
 		</div>
 	</div>
 </section>
@@ -109,7 +115,7 @@
 		border: 1px solid var(--color-gray-300);
 		border-radius: 0.5rem;
 		padding: 1rem;
-		background-color: rgba(255,255,255,0.05);
+		background-color: rgba(255, 255, 255, 0.05);
 		backdrop-filter: blur(4px);
 	}
 </style>

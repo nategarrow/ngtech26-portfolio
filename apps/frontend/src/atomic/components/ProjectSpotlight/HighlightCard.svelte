@@ -8,33 +8,38 @@
 
 	type HighlightCardProps = Project & {
 		simple: boolean;
-	}
+	};
 
-	const { simple, title, client, description, techStack, stats, featuredImage, projectLink, agencyLink }: HighlightCardProps = $props();
+	const {
+		simple,
+		title,
+		client,
+		description,
+		techStack,
+		stats,
+		featuredImage,
+		projectLink,
+		agencyLink,
+	}: HighlightCardProps = $props();
 
 	const cardClass = cva('relative z-10 size-full text-white', {
 		variants: {
 			simple: {
 				true: '',
 				false: 'grid size-full grid-cols-1 gap-8 md:grid-cols-[2fr_1fr] md:grid-rows-1 md:flex-row md:gap-x-12',
-			}
+			},
 		},
 		defaultVariants: {
-			simple: false
-		}
-	})
+			simple: false,
+		},
+	});
 </script>
 
-<div
-	id={stringToKebabCase(client)}
-	class="project-card shadow-blue/30 mx-auto w-full max-w-5xl rounded-lg shadow-2xl"
->
+<div id={stringToKebabCase(client)} class="project-card shadow-blue/30 mx-auto w-full max-w-5xl rounded-lg shadow-2xl">
 	<div
-		class="h-full bg-background/10 border-blue-light/50 relative overflow-hidden rounded-2xl border px-4 py-10 backdrop-blur-lg lg:px-12"
+		class="bg-background/10 border-blue-light/50 relative h-full overflow-hidden rounded-2xl border px-4 py-10 backdrop-blur-lg lg:px-12"
 	>
-		<div
-			class={cardClass({simple})}
-		>
+		<div class={cardClass({ simple })}>
 			<div class="relative z-10 md:row-span-2">
 				<div class="flex h-full flex-col justify-between gap-8">
 					<div>
