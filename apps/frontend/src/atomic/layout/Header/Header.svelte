@@ -1,13 +1,22 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { page as statePage } from '$app/state';
 
-	let activeNavItem = $state('home');
+  const resumeLink = $derived(statePage.data.resumeLink);
+
+	let activeNavItem = $state($page.url.pathname === '/' ? 'home' : $page.url.pathname.replace('/', ''));
 	const homePageSections = ['home', 'about-me', 'success-stories'];
 
 	// Handle navigation changes
 	$effect(() => {
 		if ($page.url.pathname !== '/') {
+			if ($page.url.pathname === '/projects') {
+				activeNavItem = 'projects';
+
+				return;
+			}
+
 			activeNavItem = '';
 		} else {
 			// When returning to home, check scroll position after a brief delay
@@ -119,12 +128,12 @@
 </script>
 
 <header class="fixed top-0 left-0 z-50 w-full backdrop-blur-xs">
-	<div class="mx-auto max-w-7xl px-4 lg:px-6">
-		<div class="mx-auto flex w-full items-center justify-center px-4 py-5 lg:justify-between">
+	<div class="container">
+		<div class="mx-auto flex w-full items-center justify-center py-5 lg:justify-between">
 			<span class="font-germania-one flex-1 text-xl font-medium text-white lg:text-3xl">NG</span>
 			<nav class="flex gap-4">
 				<div class="nav-wrapper hidden w-full flex-1 items-center justify-center gap-4 lg:flex">
-					<div class="bg-card-background flex items-center gap-6 rounded-xl p-2">
+					<div class="bg-card-background flex items-center gap-6 rounded-md p-2">
 						<nav>
 							<ul class="flex w-fit flex-col gap-4 text-right text-sm text-white lg:flex-row lg:gap-2 lg:text-center">
 								<li class="flex justify-end lg:justify-center">
@@ -143,11 +152,11 @@
 					</div>
 				</div>
 				<div class="nav-wrapper hidden w-full flex-1 items-center justify-center gap-4 lg:flex">
-					<div class="bg-card-background flex items-center gap-6 rounded-xl p-2">
+					<div class="bg-card-background flex items-center gap-6 rounded-md p-2">
 						<nav>
 							<ul class="flex w-fit flex-col gap-4 text-right text-sm text-white lg:flex-row lg:gap-2 lg:text-center">
 								<li class="flex justify-end lg:justify-center">
-									<a href="/projects" class="nav-item">Portfolio</a>
+									<a href="/projects" class:active={activeNavItem === 'projects'} class="nav-item">Projects</a>
 								</li>
 							</ul>
 						</nav>
@@ -155,14 +164,16 @@
 				</div>
 			</nav>
 			<div class="flex flex-1 justify-end gap-2">
-				<a
-					href="/resume"
-					title="Resume"
-					target="_blank"
-					class="btn bg-violet font-subtitle text-offwhite text-xs hover:bg-violet-600 md:text-sm text-nowrap"
-				>
-					View Resume
-				</a>
+				{#if resumeLink?.asset?.url}
+					<a
+						href={resumeLink?.asset?.url}
+						title="Resume"
+						target="_blank"
+						class="btn bg-violet font-subtitle text-offwhite text-xs text-nowrap hover:bg-violet-600 md:text-sm"
+					>
+						View Resume
+					</a>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -182,7 +193,7 @@
 	.nav-item {
 		display: block;
 		padding: 0.5rem 1rem;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		width: max-content;
 
 		&.active {

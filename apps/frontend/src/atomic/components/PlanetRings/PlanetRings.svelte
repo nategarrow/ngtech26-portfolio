@@ -266,7 +266,7 @@
 	};
 
 	const handleScroll = () => {
-		scrollY = window.scrollY;
+		scrollY = Math.min(window.scrollY, window.innerHeight * 1.25);
 	};
 
 	onMount(() => {
@@ -288,12 +288,12 @@
 <canvas
 	bind:this={canvas}
 	class="planet-rings"
-	style="transform: translateY({scrollY * parallaxFactor}px); opacity: {scrollOpacity}"
+	style="transform: translateY({-1 * scrollY * parallaxFactor}px); opacity: {scrollOpacity}"
 ></canvas>
 
 <style>
 	.planet-rings {
-		position: absolute;
+		position: fixed;
 		will-change: transform;
 		top: 0;
 		left: 0;

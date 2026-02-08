@@ -12,7 +12,8 @@
 	import PlanetRings from '@components/PlanetRings/PlanetRings.svelte';
 	import Header from '../atomic/layout/Header/Header.svelte';
 
-	const { children } = $props();
+	import type { PageData } from './$types';
+	const { children }: PageData = $props();
 
 	// Ring position based on current route
 	const ringPosition = $derived.by(() => {
@@ -35,7 +36,9 @@
 <Header />
 
 <main>
-	{@render children()}
+	<div class="relative z-5">
+		{@render children()}
+	</div>
 	<PlanetRings centerXPercent={ringPosition.centerX} centerYPercent={ringPosition.centerY} />
 	<div class="dark-star fixed"></div>
 </main>

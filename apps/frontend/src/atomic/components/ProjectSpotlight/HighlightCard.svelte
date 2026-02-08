@@ -1,26 +1,49 @@
 <script lang="ts">
-	import { stringToKebabCase } from '../../../utils/textFunctions';
-	import type { Project } from '@lib/types/sanity.types';
 	import { urlFor } from '@lib/sanity/image';
+	import { cva } from 'cva';
 
-	const { title, client, description, techStack, stats, featuredImage, projectLink, agencyLink }: Project = $props();
+	import { stringToKebabCase } from '../../../utils/textFunctions';
+
+	import type { Project } from '@lib/types/sanity.types';
+
+	type HighlightCardProps = Project & {
+		simple: boolean;
+	}
+
+	const { simple, title, client, description, techStack, stats, featuredImage, projectLink, agencyLink }: HighlightCardProps = $props();
+
+	const cardClass = cva('relative z-10 size-full text-white', {
+		variants: {
+			simple: {
+				true: '',
+				false: 'grid size-full grid-cols-1 gap-8 md:grid-cols-[2fr_1fr] md:grid-rows-1 md:flex-row md:gap-x-12',
+			}
+		},
+		defaultVariants: {
+			simple: false
+		}
+	})
 </script>
 
 <div
 	id={stringToKebabCase(client)}
-	class="project-card shadow-blue/30 mx-auto w-full max-w-5xl rounded-lg shadow-2xl md:sticky"
+	class="project-card shadow-blue/30 mx-auto w-full max-w-5xl rounded-lg shadow-2xl"
 >
 	<div
-		class="bg-background border-blue-light/50 relative overflow-hidden rounded-2xl border-1 px-4 py-10 backdrop-blur-lg lg:px-12"
+		class="h-full bg-background/10 border-blue-light/50 relative overflow-hidden rounded-2xl border px-4 py-10 backdrop-blur-lg lg:px-12"
 	>
 		<div
-			class="relative z-10 grid size-full grid-cols-1 gap-8 text-white md:grid-cols-[2fr_1fr] md:grid-rows-1 md:flex-row md:gap-x-12"
+			class={cardClass({simple})}
 		>
 			<div class="relative z-10 md:row-span-2">
 				<div class="flex h-full flex-col justify-between gap-8">
 					<div>
-						<p class="font-title mb-4 text-base font-light tracking-wide text-white md:text-lg lg:text-xl">{client}</p>
-						<h3 class="font-subtitle text-xl font-medium tracking-tight text-white md:text-2xl">{title}</h3>
+						<p class="font-title mb-4 text-base font-light tracking-wide text-white md:text-lg lg:text-xl">
+							{client}
+						</p>
+						<p class="font-subtitle text-xl font-medium tracking-tight text-white md:text-2xl">
+							{title}
+						</p>
 						<p class="text-offwhite mt-4 text-base">
 							{description}
 						</p>

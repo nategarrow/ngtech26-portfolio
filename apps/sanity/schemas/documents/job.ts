@@ -1,52 +1,53 @@
 import { DocumentIcon } from '@sanity/icons'
-import { RuleType } from '../../lib/types'
+import { DateRule, defineField } from 'sanity'
 
 const jobType = {
   name: 'job',
   type: 'document',
   icon: DocumentIcon,
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'tags', title: 'Tags' },
+    { name: 'seo', title: 'SEO' },
+  ],
+  fieldsets: [
+    { name: 'duration', title: 'Duration', options: { columns: 2 } },
+    { name: 'details', title: 'Details' },
+  ],
   fields: [
-    {
+    defineField({
       name: 'position',
       type: 'string',
       title: 'Position',
-    },
-    {
+    }),
+    defineField({
       name: 'company',
       type: 'string',
       title: 'Company',
-    },
-    {
+    }),
+    defineField({
       name: 'currentPosition',
       type: 'boolean',
-    },
-    {
+    }),
+    defineField({
       name: 'startDate',
       type: 'date',
       title: 'Start Date',
-      validation: (rule: RuleType) => rule.required(),
-    },
-    {
+      fieldset: 'duration',
+      validation: (rule: DateRule) => rule.required(),
+    }),
+    defineField({
       name: 'endDate',
       type: 'date',
       title: 'End Date',
-      hidden: ({ document }) => document?.currentPosition,
-    },
-    {
+      fieldset: 'duration',
+      hidden: ({ parent }) => parent?.currentPosition,
+    }),
+    defineField({
       title: 'Note',
       name: 'note',
       type: 'string',
-    },
-    {
-      name: 'description',
-      type: 'array',
-      title: 'Description',
-      of: [
-        {
-          type: 'block',
-        },
-      ],
-    },
+    }),
   ],
   orderings: [
     {

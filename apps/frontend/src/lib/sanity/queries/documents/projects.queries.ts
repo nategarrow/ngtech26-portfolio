@@ -7,7 +7,7 @@ export const projectQuery = groq`
 	description,
 	techStack,
 	client,
-	featuredImage {
+	projectImage {
 		${richImageFragment}
 	},
 	clientLogo {
@@ -20,7 +20,35 @@ export const projectQuery = groq`
 	},
 	projectLink,
 	agencyLink,
-	cusstomColor,
+	customColor,
+	types->{
+		_id,
+		title
+	},
+	tags[]->{
+		_id,
+		title
+	}
+`;
+
+export const projectCardQuery = groq`
+  _id,
+	title,
+	client,
+	description,
+	projectImage {
+		${richImageFragment}
+	},
+	projectLink,
+	agencyLink,
+	types->{
+		_id,
+		title
+	},
+	tags[]->{
+		_id,
+		title
+	}
 `;
 
 export const allProjectsQuery = groq`*[_type == "project"]`;

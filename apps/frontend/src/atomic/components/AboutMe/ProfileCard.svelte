@@ -2,7 +2,10 @@
 	import Icon from 'svelte-awesome/components/Icon.svelte';
 	import { faGithub, faLinkedin } from '@awesome.me/kit-7afeb9cb5d/icons/classic/brands';
 	import { faDownload } from '@awesome.me/kit-7afeb9cb5d/icons/sharp/light';
-	import { PUBLIC_RESUME_FILENAME } from '$env/static/public';
+
+ import { page } from '$app/state';
+
+  const resumeLink = $derived(page.data.resumeLink);
 </script>
 
 <div class="profile-card relative w-full max-w-3xl">
@@ -37,9 +40,10 @@
 						<Icon data={faGithub} class="size-6" />
 					</a>
 				</li>
+				{#if resumeLink?.asset?.url}
 				<li>
 					<a
-						href={PUBLIC_RESUME_FILENAME}
+						href={resumeLink?.asset?.url}
 						target="_blank"
 						rel="noopener noreferrer"
 						title="Resume"
@@ -48,6 +52,7 @@
 						<Icon data={faDownload} class="size-6" />
 					</a>
 				</li>
+				{/if}
 			</ul>
 		</div>
 	</div>

@@ -9,8 +9,11 @@ const project = defineType({
   title: 'Project',
   groups: [
     { name: 'content', title: 'Content', default: true },
+    { name: 'clients', title: 'Clients' },
+    { name: 'tags', title: 'Tags' },
     { name: 'seo', title: 'SEO' },
   ],
+  fieldsets: [{ name: 'card', title: 'Card Data', options: { collapsible: true } }],
   fields: [
     defineField({
       name: 'seo',
@@ -27,15 +30,15 @@ const project = defineType({
     defineField({
       name: 'client',
       type: 'string',
-      group: 'content',
+      group: 'clients',
       title: 'Client',
-      validation: (rule: StringRule) => rule.required(),
     }),
     defineField({
       name: 'clientLogo',
       title: 'Client Logo',
       type: 'richImage',
-      group: 'content',
+      group: 'clients',
+      hidden: ({ parent }) => parent.client === '',
     }),
     defineField({
       name: 'description',
@@ -48,6 +51,7 @@ const project = defineType({
       name: 'stats',
       type: 'array',
       group: 'content',
+      fieldset: 'card',
       validation: (rule) => rule.max(4),
       of: [
         defineArrayMember({
@@ -73,15 +77,25 @@ const project = defineType({
     }),
     defineField({
       name: 'techStack',
+      title: 'Tech Stack',
       type: 'string',
       group: 'content',
-      title: 'Tech Stack',
+      fieldset: 'card',
     }),
     defineField({
       name: 'featuredImage',
       type: 'richImage',
       group: 'content',
       title: 'Featured Image',
+      fieldset: 'card',
+      deprecated: true,
+    }),
+    defineField({
+      name: 'projectImage',
+      title: 'Project Image',
+      type: 'richImage',
+      group: 'content',
+      fieldset: 'card',
     }),
     defineField({
       name: 'projectLink',
@@ -91,10 +105,16 @@ const project = defineType({
       validation: (rule: UrlRule) => rule.required(),
     }),
     defineField({
+      title: 'Agency Link',
       name: 'agencyLink',
       type: 'url',
-      group: 'content',
-      title: 'Agency Link',
+      group: 'clients',
+    }),
+    defineField({
+      title: 'Launch Date',
+      name: 'launchDate',
+      type: 'date',
+      group: 'clients',
     }),
     defineField({
       name: 'customColor',
@@ -106,6 +126,20 @@ const project = defineType({
         list: ['default', 'red', 'blue', 'green', 'purple'],
       },
     }),
+    defineField({
+      name: 'type',
+      title: 'Type',
+      type: 'reference',
+      to: [{ type: 'projectType' }],
+      group: 'tags',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'tag' }] }],
+      group: 'tags',
+    }),
   ],
   preview: {
     select: {
@@ -114,8 +148,8 @@ const project = defineType({
     },
     prepare({ title, client }: { title?: string; client?: string }) {
       return {
-        title: client,
-        subtitle: title,
+        title: title || 'No Title',
+        subtitle: client || 'Personal',
       }
     },
   },

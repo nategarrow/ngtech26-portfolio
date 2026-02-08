@@ -6,9 +6,6 @@ import testimonialType from './testimonial'
 import { siteSettings } from './siteSettings'
 import { richImage } from './image'
 
-// Taxonomy
-import { projectType } from './taxonomies'
-
 export const documents = [
   homePageType,
   jobType,
@@ -17,5 +14,4 @@ export const documents = [
   skillsType,
   siteSettings,
   richImage,
-  projectType,
 ]
