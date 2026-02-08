@@ -34,6 +34,11 @@
 					{/if}
 				</div>
 			</div>
+			<div class="mx-auto mt-12 text-center lg:hidden">
+				<a href="/projects" class="border-violet hover:bg-blue-light/10 font-subtitle rounded-sm border px-6 py-2 font-medium hover:border-white">
+					View Projects
+				</a>
+			</div>
 		</div>
 	</div>
 </section>

@@ -130,7 +130,9 @@
 <header class="fixed top-0 left-0 z-50 w-full backdrop-blur-xs">
 	<div class="container">
 		<div class="mx-auto flex w-full items-center justify-center py-5 lg:justify-between">
-			<span class="font-germania-one flex-1 text-xl font-medium text-white lg:text-3xl">NG</span>
+			<a href="/" class="flex-1">
+				<span class="font-germania-one text-xl font-medium text-white lg:text-3xl">NG</span>
+			</a>
 			<nav class="flex gap-4">
 				<div class="nav-wrapper hidden w-full flex-1 items-center justify-center gap-4 lg:flex">
 					<div class="bg-card-background flex items-center gap-6 rounded-md p-2">

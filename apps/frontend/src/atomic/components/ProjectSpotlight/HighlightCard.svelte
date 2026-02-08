@@ -17,7 +17,7 @@
 		description,
 		techStack,
 		stats,
-		featuredImage,
+		projectImage,
 		projectLink,
 		agencyLink,
 	}: HighlightCardProps = $props();
@@ -101,14 +101,14 @@
 				</div>
 			</div>
 		</div>
-		{#if featuredImage?.image}
+		{#if projectImage?.image}
 			<div class="absolute top-1/2 left-0 z-0 h-full w-full md:top-0 md:left-1/2">
 				<div
 					class="project-thumbnail before:to-card-background/30 before:from-background relative aspect-video h-full max-h-full w-full overflow-hidden before:absolute before:top-0 before:left-0 before:h-full before:w-full before:max-w-full before:bg-linear-to-b before:content-[''] md:before:bg-linear-to-r"
 				>
 					<div class="max-w-full">
 						<img
-							src={urlFor(featuredImage?.image).width(1280).auto('format').url()}
+							src={urlFor(projectImage?.image).width(1280).auto('format').url()}
 							alt={title}
 							class="h-full w-full object-cover"
 							loading="eager"

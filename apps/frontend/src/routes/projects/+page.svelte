@@ -75,6 +75,9 @@
 						That being said, I'm glad you're here and want to showcase a few of my previous projects. Thank you for
 						visiting!
 					</p>
+					<a href="/" class="inline-block mt-6 border-orange hover:bg-blue-light/10 font-subtitle rounded-sm border px-6 py-2 font-medium hover:border-white">
+						Return home
+					</a>
 				</div>
 			{/if}
 		</div>

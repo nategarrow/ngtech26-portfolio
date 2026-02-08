@@ -83,14 +83,6 @@ const project = defineType({
       fieldset: 'card',
     }),
     defineField({
-      name: 'featuredImage',
-      type: 'richImage',
-      group: 'content',
-      title: 'Featured Image',
-      fieldset: 'card',
-      deprecated: true,
-    }),
-    defineField({
       name: 'projectImage',
       title: 'Project Image',
       type: 'richImage',

@@ -220,7 +220,7 @@ export type Project = {
 		_key: string;
 	}>;
 	techStack?: string;
-	featuredImage?: RichImage;
+	projectImage?: RichImage;
 	projectLink?: string;
 	agencyLink?: string;
 	customColor?: 'default' | 'red' | 'blue' | 'green' | 'purple';
@@ -523,7 +523,7 @@ export type AllProjectsQueryResult = Array<{
 		_key: string;
 	}>;
 	techStack?: string;
-	featuredImage?: RichImage;
+	projectImage?: RichImage;
 	projectLink?: string;
 	agencyLink?: string;
 	customColor?: 'blue' | 'default' | 'green' | 'purple' | 'red';
