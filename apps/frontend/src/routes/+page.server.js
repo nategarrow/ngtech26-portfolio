@@ -1,10 +1,5 @@
-import { homeQuery } from '$lib/sanity/queries';
-import { client } from '@lib/sanity/client.js';
+import { getHomePageData } from '@lib/sanity/queries/documents/homePage.queries';
 
 export const load = async () => {
-	const homeData = await client.fetch(homeQuery);
-
-	return {
-		homeData,
-	};
+	return await getHomePageData();
 };

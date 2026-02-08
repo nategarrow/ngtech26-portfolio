@@ -11,5 +11,5 @@
 	"proseWrap": "always",
 	"useTabs": true,
 	"singleQuote": true,
-	"plugins": ["prettier-plugin-organize-imports", "prettier-plugin-svelte"]
+	"plugins": ["prettier-plugin-organize-imports", "prettier-plugin-svelte", "prettier-plugin-tailwindcss"]
 }

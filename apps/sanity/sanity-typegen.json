@@ -1,5 +1,0 @@
-{
-  "path": "../ngtech24-sveltekit/src/**/*.{ts,tsx,js,jsx}",
-  "schema": "schema.json",
-  "generates": "../ngtech24-sveltekit/src/lib/types/types.ts"
-}

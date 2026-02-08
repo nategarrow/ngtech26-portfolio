@@ -1,24 +1,16 @@
 <script lang="ts">
-	import Footer from '@components/Footer.svelte';
-	import Hero from '@components/Hero.svelte';
-	import Portfolio from '@components/Portfolio/Portfolio.svelte';
-	import AboutMe from '@components/AboutMe/AboutMe.svelte';
-	import Resume from '@components/Resume/Resume.svelte';
-	import TestimonialList from '@components/Testimonials/TestimonialList.svelte';
+	import ComponentGenerator from '@atomic/components/ComponentGenerator.svelte';
+	import Seo from '@atomic/molecules/Seo.svelte';
+	import { fade } from 'svelte/transition';
 
-	export let data;
-	const { homeData } = data;
-	const { heroContent, aboutContent, aboutStats, projectHighlights, experiences, skills, testimonials } = homeData?.[0];
+	const { data } = $props();
+	const { sections, seo } = $derived(data || {});
 </script>
 
-<Hero {heroContent} />
+{#if seo}
+	<Seo {seo} />
+{/if}
 
-<AboutMe {aboutContent} {aboutStats} />
-
-<Portfolio {projectHighlights} />
-
-<Resume {experiences} {skills} />
-
-<TestimonialList {testimonials} />
-
-<Footer />
+<div in:fade>
+	<ComponentGenerator {sections} />
+</div>
