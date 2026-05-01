@@ -21,43 +21,43 @@
    			</div>
     		</div>
     		<div class="social-media">
-  			<ul class="flex gap-5">
-  				<li>
-  					<a
-  						href="https://linkedin.com/in/nategarrow"
-  						target="_blank"
-  						rel="noopener noreferrer"
-  						title="LinkedIn"
-  						class="text-offwhite hover:text-blue"
-  					>
-  						<Icon data={faLinkedin} class="size-6" />
-  					</a>
-  				</li>
-  				<li>
-  					<a
-  						href="https://github.com/nategarrow"
-  						target="_blank"
-  						rel="noopener noreferrer"
-  						title="Github"
-  						class="text-offwhite hover:text-blue"
-  					>
-  						<Icon data={faGithub} class="size-6" />
-  					</a>
-  				</li>
-  				{#if resumeLink?.asset?.url}
-  					<li>
-  						<a
-  							href={resumeLink?.asset?.url}
-  							target="_blank"
-  							rel="noopener noreferrer"
-  							title="Resume"
-  							class="text-offwhite hover:text-blue"
-  						>
-  							<Icon data={faDownload} class="size-6" />
-  						</a>
-  					</li>
-  				{/if}
-  			</ul>
+     			<ul class="flex gap-5">
+    				<li>
+     					<a
+      						href="https://linkedin.com/in/nategarrow"
+      						target="_blank"
+      						rel="noopener noreferrer"
+      						title="LinkedIn"
+      						class="text-offwhite hover:text-blue"
+     					>
+      						<Icon data={faLinkedin} class="size-6" />
+     					</a>
+    				</li>
+    				<li>
+     					<a
+      						href="https://github.com/nategarrow"
+      						target="_blank"
+      						rel="noopener noreferrer"
+      						title="Github"
+      						class="text-offwhite hover:text-blue"
+     					>
+      						<Icon data={faGithub} class="size-6" />
+     					</a>
+    				</li>
+    				{#if resumeLink?.asset?.url}
+   					<li>
+    						<a
+   							href={resumeLink?.asset?.url}
+   							target="_blank"
+   							rel="noopener noreferrer"
+   							title="Resume"
+   							class="text-offwhite hover:text-blue"
+    						>
+   							<Icon data={faDownload} class="size-6" />
+    						</a>
+   					</li>
+    				{/if}
+   			</ul>
   		</div>
   	</div>
   </div>
