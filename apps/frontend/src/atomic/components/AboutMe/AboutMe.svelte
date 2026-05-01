@@ -7,7 +7,7 @@
 
 	import type { AboutMe } from '@lib/types/sanity.types';
 
-	const { aboutContent, aboutStats }: AboutMe = $props();
+	const { aboutContent, aboutStats, openToWork }: AboutMe = $props();
 
 	let statsListEl: HTMLElement;
 
@@ -36,7 +36,9 @@
 	<div class="mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 lg:flex-row lg:gap-10">
 		<div class="grid-rows-auto grid grid-cols-1 gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
 			<h2 class="font-title text-3xl font-medium lg:text-4xl">About Me</h2>
-			<div class="col-start-1 row-start-3 content-end lg:row-start-2"><ProfileCard /></div>
+			<div class="col-start-1 row-start-3 content-end lg:row-start-2">
+			  <ProfileCard {openToWork} />
+			</div>
 			<div class=" w-full flex-1 space-y-2 lg:row-span-2">
 				<div class="text-md mx-auto">
 					{#if aboutContent}
