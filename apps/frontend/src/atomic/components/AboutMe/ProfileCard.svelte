@@ -17,8 +17,10 @@
     		<div class="flex items-center gap-4">
       		<div class="flex flex-1 flex-col gap-1">
     				<p class="font-subtitle text-xl text-white">{`<LetsChat />`}</p>
-    				<p class="font-code text-blue-light mt-0 text-xs">I'm currently open to work!</p>
-   			</div>
+    				<p class="font-code text-blue-light mt-0 text-xs">
+              I'm currently open to work!
+            </p>
+     			</div>
     		</div>
     		<div class="social-media">
      			<ul class="flex gap-5">
