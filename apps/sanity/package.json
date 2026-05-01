@@ -11,7 +11,8 @@
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
     "clean": "rm -rf dist node_modules",
-    "typegen": "sanity schema extract && sanity typegen generate"
+    "typegen": "sanity schema extract && sanity typegen generate",
+    "init-envs": "cross-env APP_ENV=prod op inject -i .env.tpl -o .env"
   },
   "keywords": [
     "sanity"
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^6.0.0",
     "@types/react": "^19.2.13",
+    "cross-env": "^10.1.0",
     "eslint": "^10.0.0",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
