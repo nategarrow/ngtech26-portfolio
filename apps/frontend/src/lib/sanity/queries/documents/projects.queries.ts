@@ -21,7 +21,7 @@ export const projectQuery = groq`
 	projectLink,
 	agencyLink,
 	customColor,
-	types->{
+	type->{
 		_id,
 		title
 	},
@@ -41,7 +41,7 @@ export const projectCardQuery = groq`
 	},
 	projectLink,
 	agencyLink,
-	types->{
+	type->{
 		_id,
 		title
 	},

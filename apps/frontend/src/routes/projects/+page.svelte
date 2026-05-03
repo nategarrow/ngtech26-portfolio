@@ -1,124 +1,73 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 
 	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
+	import ProjectTypeNav from '@atomic/features/ProjectTypeMenu/molecules/ProjectTypeNav.svelte';
 
 	const { data } = $props();
 
 	const projects = $derived(data?.projects || []);
-	const taxonomies = $derived(data?.taxonomies || []);
+	const taxonomies = $derived(data?.taxonomies || {});
 
 	let activeType = $state('all');
-	let activeTag = $state('all');
 
-	const workInProgress = true;
+	const filteredProjects = $derived(
+		activeType === 'all' ? projects : projects.filter((p: any) => p.type?._id === activeType)
+	);
 
-	const setActiveFilter = (newValue: string, filter: 'tag' | 'type') => {
-		if (filter === 'type') {
-			activeType = newValue;
-		} else if (filter === 'tag') {
-			activeTag = newValue;
-		}
-	};
+	const activeTabId = $derived(`project-type-tab-${activeType}`);
+
+	const PANEL_ID = 'project-type-panel';
 </script>
 
 <section class="pt-20 pb-12 md:pt-32 md:pb-20" in:fade>
 	<div class="container space-y-12 py-5">
 		<div class="flex flex-col gap-8">
 			<h1 class="text-2xl md:text-4xl lg:text-5xl">All Projects</h1>
-			{#if !workInProgress}
-				<div class="taxonomies flex flex-col gap-4">
-					{#if taxonomies?.types}
-						<div class="flex flex-wrap gap-4">
-							<button
-								onclick={() => setActiveFilter('all', 'type')}
-								class="taxonomy-type"
-								class:active={activeType === 'all'}
-							>
-								All
-							</button>
-							{#each taxonomies.types as type}
-								<button
-									onclick={() => setActiveFilter(type._id, 'type')}
-									class:active={activeType === type._id}
-									class="taxonomy-type">{type.title}</button
-								>
-							{/each}
-						</div>
-					{/if}
-					{#if taxonomies?.tags}
-						<div class="flex flex-wrap gap-4">
-							<button
-								onclick={() => setActiveFilter('all', 'tag')}
-								class="taxonomy-tag"
-								class:active={activeTag === 'all'}
-							>
-								All
-							</button>
-
-							{#each taxonomies.tags as tag}
-								<button
-									onclick={() => setActiveFilter(tag._id, 'tag')}
-									class:active={activeTag === tag._id}
-									class="taxonomy-tag"
-								>
-									{tag.title}
-								</button>
-							{/each}
-						</div>
-					{/if}
-				</div>
-			{:else}
-				<div class="space-y-2">
-					<p>⚠️ Oh no! This page is currently under construction. ⚠️</p>
-					<p>
-						That being said, I'm glad you're here and want to showcase a few of my previous projects. Thank you for
-						visiting!
-					</p>
-					<a href="/" class="inline-block mt-6 border-orange hover:bg-blue-light/10 font-subtitle rounded-sm border px-6 py-2 font-medium hover:border-white">
-						Return home
-					</a>
-				</div>
+			<div class="space-y-2">
+				<p>⚠️ Oh no! This page is currently under construction. ⚠️</p>
+				<p>
+					That being said, I'm glad you're here and want to showcase a few of my previous projects. Thank you for
+					visiting!
+				</p>
+			</div>
+			{#if taxonomies?.types?.length}
+				<ProjectTypeNav
+					types={taxonomies.types}
+					{activeType}
+					panelId={PANEL_ID}
+					onchange={(id) => (activeType = id)}
+				/>
 			{/if}
 		</div>
-		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-10">
-			{#each projects as project}
-				<HighlightCard {...project} simple />
-			{/each}
+
+		<div
+			id={PANEL_ID}
+			role="tabpanel"
+			aria-labelledby={activeTabId}
+			tabindex="0"
+			class="outline-none"
+		>
+			{#key activeType}
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-10">
+					{#each filteredProjects as project, i (project._id)}
+						<div in:fly={{ y: 16, duration: 300, delay: 60 + i * 70, easing: cubicOut }}>
+							<HighlightCard {...project} simple />
+						</div>
+					{:else}
+						<p class="text-offwhite col-span-full py-12 text-center">
+							No projects found for this type.
+						</p>
+					{/each}
+				</div>
+			{/key}
 		</div>
-		<div class="text-center">
-			<span class="text-3xl text-white"> And many more! </span>
-		</div>
+
+		{#if activeType === 'all'}
+			<div class="text-center">
+				<span class="text-3xl text-white"> And many more! </span>
+			</div>
+		{/if}
 	</div>
 </section>
-
-<style>
-	.taxonomy-type {
-		font-size: 1.2em;
-
-		&.active {
-			text-decoration: underline;
-		}
-	}
-	.taxonomy-tag {
-		border: 1px solid white;
-		border-radius: 0.25rem;
-		padding: 0.25rem 1rem;
-
-		&.active {
-			border-color: var(--color-blue-300);
-		}
-	}
-
-	.project-card {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-
-		border: 1px solid var(--color-gray-300);
-		border-radius: 0.5rem;
-		padding: 1rem;
-		background-color: rgba(255, 255, 255, 0.05);
-		backdrop-filter: blur(4px);
-	}
-</style>

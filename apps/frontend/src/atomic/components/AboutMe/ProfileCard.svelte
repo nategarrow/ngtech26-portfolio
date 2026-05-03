@@ -6,7 +6,6 @@
 	import { page } from '$app/state';
 
 	const { openToWork }: { openToWork: boolean } = $props();
-	console.log('openToWork', openToWork)
 
 	const resumeLink = $derived(page.data.resumeLink);
 </script>

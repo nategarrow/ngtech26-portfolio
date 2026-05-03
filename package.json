@@ -13,7 +13,7 @@
     "lint": "pnpm --filter \"./apps/*\" lint",
     "clean": "pnpm --filter \"./apps/*\" clean"
   },
-  "packageManager": "pnpm@10.29.1+sha512.48dae233635a645768a3028d19545cacc1688639eeb1f3734e42d6d6b971afbf22aa1ac9af52a173d9c3a20c15857cfa400f19994d79a2f626fcc73fccda9bbc",
+  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8",
   "devDependencies": {
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2"

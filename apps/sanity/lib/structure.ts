@@ -10,7 +10,16 @@ export const structure = (S) =>
       S.divider(),
 
       // Regular document types
-      S.documentTypeListItem('project').title('Projects'),
+      S.listItem()
+        .title('Projects')
+        .child(
+          S.list()
+            .title('Projects')
+            .items([
+              S.documentTypeListItem('projectType').title('Project Types'),
+              S.documentTypeListItem('project').title('Projects'),
+            ])
+        ),
       S.documentTypeListItem('job').title('Jobs'),
       S.documentTypeListItem('testimonial').title('Testimonials'),
 
