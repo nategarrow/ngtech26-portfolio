@@ -2,7 +2,7 @@
 	import { fade, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 
-	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
+	import HighlightCard from '@atomic/organisms/HighlightCard/HighlightCard.svelte';
 	import ProjectTypeNav from '@atomic/features/ProjectTypeMenu/molecules/ProjectTypeNav.svelte';
 
 	const { data } = $props();
@@ -50,9 +50,9 @@
 			class="outline-none"
 		>
 			{#key activeType}
-				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-10">
+				<div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
 					{#each filteredProjects as project, i (project._id)}
-						<div class="h-full" in:fly={{ y: 16, duration: 300, delay: 60 + i * 70, easing: cubicOut }}>
+						<div in:fly={{ y: 16, duration: 300, delay: 60 + i * 70, easing: cubicOut }}>
 							<HighlightCard {...project} simple />
 						</div>
 					{:else}

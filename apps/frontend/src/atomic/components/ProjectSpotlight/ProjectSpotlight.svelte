@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HighlightCard from '@atomic/components/ProjectSpotlight/HighlightCard.svelte';
+	import HighlightCard from '@atomic/organisms/HighlightCard/HighlightCard.svelte';
 	import { urlFor } from '@lib/sanity/image';
 	import type { Project } from '@lib/types/sanity.types';
 
@@ -33,7 +33,7 @@
 				{/each}
 			</div>
 			<div>
-				<HighlightCard {...activeClient} />
+				<HighlightCard {...activeClient} permanent />
 			</div>
 		</div>
 	</div>

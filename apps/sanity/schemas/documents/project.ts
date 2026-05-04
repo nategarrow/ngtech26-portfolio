@@ -94,7 +94,6 @@ const project = defineType({
       type: 'url',
       group: 'content',
       title: 'Project Link',
-      validation: (rule: UrlRule) => rule.required(),
     }),
     defineField({
       title: 'Agency Link',
@@ -109,13 +108,16 @@ const project = defineType({
       group: 'clients',
     }),
     defineField({
+      deprecated: {
+        reason: 'Color now defined by project type',
+      },
       name: 'customColor',
       type: 'string',
       group: 'content',
       title: 'Custom Color',
       initialValue: 'default',
       options: {
-        list: ['default', 'red', 'blue', 'green', 'purple'],
+        list: ['default', 'red', 'blue', 'purple'],
       },
     }),
     defineField({

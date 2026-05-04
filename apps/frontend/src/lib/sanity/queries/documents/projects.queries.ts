@@ -41,6 +41,8 @@ export const projectCardQuery = groq`
 	},
 	projectLink,
 	agencyLink,
+	techStack,
+	"customColor": coalesce(customColor, 'default'),
 	type->{
 		_id,
 		title

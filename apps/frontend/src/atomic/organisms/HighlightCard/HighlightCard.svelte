@@ -5,11 +5,12 @@
 
 	import { stringToKebabCase } from '../../../utils/textFunctions';
 
-	import type { Project } from '@lib/types/sanity.types';
+	import type { Project, ProjectType } from '@lib/types/sanity.types';
 
-	type HighlightCardProps = Project & {
+	type HighlightCardProps = Omit<Project, 'type'> & {
 		simple: boolean;
 		permanent?: boolean;
+		type?: ProjectType;
 	};
 
 	const {
@@ -25,6 +26,16 @@
 		agencyLink,
 		type,
 	}: HighlightCardProps = $props();
+
+	const cardThemeOptions = {
+	  'default': 'blue',
+	  'client work': 'blue',
+	  'passion projects': 'red',
+	  'internal tools': 'purple',
+	} as const;
+	type CardThemes = keyof typeof cardThemeOptions;
+
+	const cardTheme = cardThemeOptions[type ? ((type?.title || 'default').toLowerCase() as CardThemes) : 'default'];
 </script>
 
 {#snippet linkButton(href: string, label: string, compact = false)}
@@ -47,7 +58,7 @@
 		{overlay ? (client ?? type?.title) : client}
 	</p>
 	<p class="font-subtitle text-xl font-medium tracking-tight text-white md:text-2xl">{title}</p>
-	{#if description}
+	{#if type?.title == 'Passion Projects'}
 		<p
 			class="card-description {overlay ? 'is-overlay' : ''} text-offwhite {overlay
 				? 'line-clamp-2 text-sm md:text-base'
@@ -73,7 +84,7 @@
 	{/if}
 {/snippet}
 
-<div id={stringToKebabCase(client)} class="highlight-card">
+<div id={stringToKebabCase(client)} class="highlight-card card-theme-{cardTheme}">
 	{#if projectImage?.image}
 		<div class="image-card group rounded-2xl shadow-2xl shadow-blue/10">
 			<img
@@ -82,7 +93,7 @@
 				class="card-bg-image transition-transform duration-500 group-hover:scale-105"
 				loading="eager"
 			/>
-			<div class="card-hover-overlay {permanent ? 'opacity-100' : 'opacity-0 transition-opacity duration-300 group-hover:opacity-100'}">
+			<div class="card-hover-overlay {permanent ? 'opacity-100' : 'opacity-100 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100'}">
 				<div class="overlay-content text-white">
 					{@render cardMeta(true)}
 					{@render cardLinks(true)}
