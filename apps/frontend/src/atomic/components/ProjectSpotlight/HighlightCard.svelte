@@ -20,9 +20,10 @@
 		projectImage,
 		projectLink,
 		agencyLink,
-		types
+		type,
 	}: HighlightCardProps = $props();
 
+	console.log('type', type);
 	const cardClass = cva('relative z-10 size-full text-white', {
 		variants: {
 			simple: {
@@ -36,9 +37,9 @@
 	});
 </script>
 
-<div id={stringToKebabCase(client)} class="project-card mx-auto w-full max-w-5xl">
+<div id={stringToKebabCase(client)} class="project-card mx-auto h-full w-full max-w-5xl">
 	{#if projectImage?.image}
-		<div class="image-card group relative overflow-hidden rounded-2xl shadow-2xl shadow-blue/10">
+		<div class="image-card group relative h-full overflow-hidden rounded-2xl shadow-2xl shadow-blue/10">
 			<img
 				src={urlFor(projectImage.image).width(1280).auto('format').url()}
 				alt={title}
@@ -47,7 +48,7 @@
 			/>
 			<div class="card-hover-overlay absolute inset-0 flex flex-col justify-end opacity-0 transition-opacity duration-300 group-hover:opacity-100">
 				<div class="px-6 py-8 text-white lg:px-10 lg:py-10">
-					<p class="font-title mb-2 text-sm font-light tracking-wide md:text-base">{client}</p>
+					<p class="font-title mb-2 text-sm font-light tracking-wide md:text-base">{client ?? type?.title}</p>
 					<p class="font-subtitle text-xl font-medium tracking-tight md:text-2xl">{title}</p>
 					{#if description}
 						<p class="text-offwhite mt-3 line-clamp-2 text-sm md:text-base">{description}</p>
@@ -100,14 +101,6 @@
 							<p class="text-offwhite mt-4 text-base">
 								{description}
 							</p>
-							{#if techStack}
-								<div class="mt-4 flex flex-wrap gap-2">
-									<p class="text-sm md:text-base">
-										<span class="font-subtitle font-semibold tracking-widest">Technologies: </span>
-										<span class="tech-tag font-code font-light">{techStack}</span>
-									</p>
-								</div>
-							{/if}
 						</div>
 						{#if projectLink || agencyLink}
 							<div class="flex flex-col gap-4 text-center md:flex-row md:text-left">
@@ -156,7 +149,6 @@
 <style>
 	.image-card {
 		min-height: 320px;
-		aspect-ratio: 16 / 9;
 	}
 
 	.card-bg-image {

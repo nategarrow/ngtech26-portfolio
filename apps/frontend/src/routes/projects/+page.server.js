@@ -4,7 +4,7 @@ import groq from 'groq';
 
 const pageQuery = groq`
 	{
-		"projects": *[_type == "project"] | order(launchDate desc) {
+		"projects": *[_type == "project"] | order(defined(launchDate) desc, launchDate desc) {
 			${projectCardQuery}
 		},
 		"taxonomies": {

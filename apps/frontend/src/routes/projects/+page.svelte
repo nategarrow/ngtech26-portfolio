@@ -52,7 +52,7 @@
 			{#key activeType}
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-10">
 					{#each filteredProjects as project, i (project._id)}
-						<div in:fly={{ y: 16, duration: 300, delay: 60 + i * 70, easing: cubicOut }}>
+						<div class="h-full" in:fly={{ y: 16, duration: 300, delay: 60 + i * 70, easing: cubicOut }}>
 							<HighlightCard {...project} simple />
 						</div>
 					{:else}
