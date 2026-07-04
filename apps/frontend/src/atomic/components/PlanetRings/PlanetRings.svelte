@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { RingTextureRequest, RingTextureResponse } from './ringTexture.worker';
 
 	interface Props {
 		centerXPercent?: number; // Center X as percentage of viewport width (default 50)
@@ -105,87 +106,45 @@
 		}
 	});
 
-	// Offscreen canvas for the pre-rendered ring texture
-	let ringTexture: OffscreenCanvas | null = null;
+	// Pre-rendered ring texture, built off-thread by ringTexture.worker.ts
+	let ringTexture: ImageBitmap | null = null;
 	let textureSize = 0;
 
-	// Gradient color stops (position 0-1, color)
-	const gradientStops = [
-		{ pos: 0.0, r: 30, g: 25, b: 45, a: 0.0 }, // transparent at center
-		{ pos: 0.3, r: 30, g: 25, b: 45, a: 0.1 }, // faint background tint
-		{ pos: 0.5, r: 30, g: 25, b: 45, a: 0.05 }, // fade out tint
-		{ pos: 0.5, r: 70, g: 130, b: 220, a: 0.0 }, // blue starts transparent
-		{ pos: 0.72, r: 70, g: 130, b: 220, a: 0.5 }, // blue peak
-		{ pos: 0.85, r: 105, g: 105, b: 220, a: 0.35 }, // blue-violet transition
-		{ pos: 0.95, r: 140, g: 80, b: 220, a: 0.3 }, // violet
-		{ pos: 0.98, r: 180, g: 140, b: 235, a: 0.5 }, // light violet
-		{ pos: 0.995, r: 250, g: 248, b: 255, a: 0.9 }, // white edge
-		{ pos: 1.0, r: 250, g: 248, b: 255, a: 0.0 }, // fade out at edge
-	];
+	const ROTATION_SPEED = 0.0001;
+	const PARTICLE_COUNT = 120000;
 
-	// Interpolate between gradient stops
-	const getColorAtPosition = (t: number): { r: number; g: number; b: number; a: number } => {
-		// Find the two stops to interpolate between
-		let lowStop = gradientStops[0];
-		let highStop = gradientStops[gradientStops.length - 1];
+	let worker: Worker | null = null;
+	let latestRequestId = 0;
 
-		for (let i = 0; i < gradientStops.length - 1; i++) {
-			if (t >= gradientStops[i].pos && t <= gradientStops[i + 1].pos) {
-				lowStop = gradientStops[i];
-				highStop = gradientStops[i + 1];
-				break;
-			}
+	const ensureWorker = (): Worker => {
+		if (!worker) {
+			worker = new Worker(new URL('./ringTexture.worker.ts', import.meta.url), { type: 'module' });
+			worker.onmessage = (event: MessageEvent<RingTextureResponse>) => {
+				const { requestId, bitmap } = event.data;
+				// A newer resize request may have superseded this one; drop stale results
+				if (requestId !== latestRequestId) {
+					bitmap.close();
+					return;
+				}
+
+				ringTexture?.close();
+				ringTexture = bitmap;
+			};
 		}
-
-		// Calculate interpolation factor
-		const range = highStop.pos - lowStop.pos;
-		const factor = range > 0 ? (t - lowStop.pos) / range : 0;
-
-		return {
-			r: Math.round(lowStop.r + (highStop.r - lowStop.r) * factor),
-			g: Math.round(lowStop.g + (highStop.g - lowStop.g) * factor),
-			b: Math.round(lowStop.b + (highStop.b - lowStop.b) * factor),
-			a: lowStop.a + (highStop.a - lowStop.a) * factor,
-		};
+		return worker;
 	};
 
-	const PARTICLE_COUNT = 120000;
-	const ROTATION_SPEED = 0.0001;
-
-	const createRingTexture = (size: number) => {
-		ringTexture = new OffscreenCanvas(size, size);
-		const texCtx = ringTexture.getContext('2d');
-		if (!texCtx) return;
-
-		const center = size / 2;
-		const maxRadius = size / 2;
-
-		// Draw particles with smooth gradient coloring
-		for (let i = 0; i < PARTICLE_COUNT; i++) {
-			// Distribute particles with bias toward outer rings (more visible area)
-			const radiusNormalized = 0.3 + Math.pow(Math.random(), 0.7) * 0.7;
-			const radius = radiusNormalized * maxRadius;
-			const angle = Math.random() * Math.PI * 2;
-
-			const x = center + Math.cos(angle) * radius;
-			const y = center + Math.sin(angle) * radius;
-
-			// Get interpolated color based on radius position
-			const color = getColorAtPosition(radiusNormalized);
-			const brightness = 0.5 + Math.random() * 0.5;
-			const alpha = color.a * brightness;
-
-			const particleSize = 2 + Math.random() * 2.1;
-
-			texCtx.beginPath();
-			texCtx.arc(x, y, particleSize, 0, Math.PI * 2);
-			texCtx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
-			texCtx.fill();
-		}
+	const requestRingTexture = (size: number) => {
+		latestRequestId += 1;
+		const request: RingTextureRequest = { requestId: latestRequestId, size, particleCount: PARTICLE_COUNT };
+		ensureWorker().postMessage(request);
 	};
 
 	const draw = () => {
-		if (!ctx || !canvas || !ringTexture) return;
+		if (!ctx || !canvas || !ringTexture) {
+			animationId = requestAnimationFrame(draw);
+			return;
+		}
 
 		// Animate position along bezier curve if animation is in progress
 		if (animationStartTime !== null) {
@@ -261,7 +220,7 @@
 		const newTextureSize = Math.ceil(Math.max(cssWidth * 2.5, 2500) * dpr);
 		if (Math.abs(newTextureSize - textureSize) > 100) {
 			textureSize = newTextureSize;
-			createRingTexture(textureSize);
+			requestRingTexture(textureSize);
 		}
 	};
 
@@ -281,6 +240,8 @@
 			window.removeEventListener('resize', handleResize);
 			window.removeEventListener('scroll', handleScroll);
 			cancelAnimationFrame(animationId);
+			worker?.terminate();
+			worker = null;
 		};
 	});
 </script>
